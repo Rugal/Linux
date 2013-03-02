@@ -1,0 +1,32 @@
+# .bashrc
+
+# User specific aliases and functions
+
+#alias rm='rm -i'
+#alias cp='cp -i'
+#alias mv='mv -i'
+
+# Source global definitions
+
+PS1="[\[\e[0;36m\]\u@\h\[\e[m\] \[\e[0;35m\]\W\[\e[m\]]> "
+
+alias c="clear"
+alias ll="ls -lhtcFbsSp --color=auto"
+alias l="ls -cFthp --color=auto"
+alias cl="clear;ll;pwd"
+alias lc=cl
+alias df="df -h"
+alias free="free -m"
+alias ccd="cd .."
+alias cdd="cd -"
+alias dstat="dstat -cdlmnpsy"
+alias slurm="slurm -i wlan0"
+alias t="translate"
+alias ps="ps -ef|grep"
+alias v="vim"
+alias V="v"
+
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
+
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
