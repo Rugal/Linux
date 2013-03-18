@@ -114,13 +114,13 @@ set foldmethod=indent
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
 " ---------------------------------vundle configure
+"  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'taglist.vim'
 Bundle 'winmanager'
 Bundle 'minibufexpl.vim'
-Bundle 'grep.vim'
 Bundle 'Visual-Mark'
 Bundle 'SuperTab'
 Bundle 'The-NERD-tree'
@@ -159,6 +159,7 @@ let Tlist_Use_Horiz_Window=0
 " winmanager configure
 let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap wm :WMToggle<cr>
+nmap <F12> wm
 
 " quickfix configure
 nmap <F6> :cn<cr>
