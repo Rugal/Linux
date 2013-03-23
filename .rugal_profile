@@ -30,3 +30,4 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+#curl -sL get.ascii.io | bash

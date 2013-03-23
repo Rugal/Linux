@@ -112,6 +112,7 @@ set autoindent
 set ff=unix
 set foldmethod=indent
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+nmap mx :!cmatrix<cr>
 
 " ---------------------------------vundle configure
 "  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
