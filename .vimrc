@@ -134,6 +134,7 @@ Bundle 'python_fold'
 Bundle 'JavaBrowser'
 Bundle 'JavaDecompiler.vim'
 Bundle 'indentjava.vim'
+Bundle 'jedi-vim'
 
 
 " Ctags configure
