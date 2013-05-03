@@ -1,7 +1,8 @@
 " parenthesis match&generation configure
 inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
-inoremap { {<CR>}<Esc>O
+inoremap { {}<Esc>i
+"inoremap { {<CR>}<Esc>O
 autocmd Syntax html,vim inoremap < <lt>><Esc>i| inoremap > <c-r>=ClosePair('>')<CR>
 inoremap ) <c-r>=ClosePair(')')<CR>
 inoremap ] <c-r>=ClosePair(']')<CR>

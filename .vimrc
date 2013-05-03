@@ -111,6 +111,8 @@ set softtabstop=4
 set autoindent
 set ff=unix
 set foldmethod=indent
+"set spell
+"set spelllang=en
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 nmap mx :!cmatrix<cr>
 
@@ -126,15 +128,15 @@ Bundle 'Visual-Mark'
 Bundle 'SuperTab'
 Bundle 'The-NERD-tree'
 Bundle 'The-NERD-Commenter'
-Bundle 'python.vim'
 Bundle 'indentpython.vim'
-Bundle 'pythoncomplete'
 Bundle 'Pydiction'
 Bundle 'python_fold'
-Bundle 'JavaBrowser'
 Bundle 'JavaDecompiler.vim'
 Bundle 'indentjava.vim'
 
+
+
+"Bundle 'VimPdb'
 
 " Ctags configure
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -195,3 +197,16 @@ endfunction
 
 " Pydiction configure
 let g:pydiction_location='~/.vim/bundle/Pydiction/complete-dict'
+
+" statusline configure
+set laststatus=2
+set statusline=
+set statusline+=%7*\[%n]                                  "buffernr
+set statusline+=%1*\ %<%F\                                "File+path
+set statusline+=%2*\ %y\                                  "FileType
+set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
+set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
+set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
+set statusline+=%9*\ col:%03c\                            "Colnr
+set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.}}"}"}"}>"
