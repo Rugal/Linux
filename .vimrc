@@ -132,8 +132,8 @@ Bundle 'Pydiction'
 Bundle 'python_fold'
 Bundle 'JavaDecompiler.vim'
 Bundle 'indentjava.vim'
-Bundle 'jedi-vim'
-
+Bundle 'davidhalter/jedi-vim'
+Bundle 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
 
 
 "Bundle 'VimPdb'
@@ -160,7 +160,7 @@ let Tlist_Use_Horiz_Window=0
 :command -range=% T :TlistToggle 
 
 " winmanager configure
-let g:winManagerWindowLayout='FileExplorer|TagList'
+"let g:winManagerWindowLayout='FileExplorer|TagList'
 nmap wm :WMToggle<cr>
 nmap <F12> wm
 
@@ -174,9 +174,6 @@ let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1   
 let g:miniBufExplModSelTarget = 1  
 let g:miniBufExplMoreThanOne=0  
-
-" grep.vim configure
-nnoremap <silent> <F3> :Grep<CR>
 
 " omnicomplete configure 
 set completeopt=longest,menu
@@ -198,15 +195,5 @@ endfunction
 " Pydiction configure
 let g:pydiction_location='~/.vim/bundle/Pydiction/complete-dict'
 
-" statusline configure
+" powerline configure
 set laststatus=2
-set statusline=
-set statusline+=%7*\[%n]                                  "buffernr
-set statusline+=%1*\ %<%F\                                "File+path
-set statusline+=%2*\ %y\                                  "FileType
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..) 
-set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-set statusline+=%9*\ col:%03c\                            "Colnr
-set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot.}}"}"}"}>"
