@@ -133,6 +133,7 @@ Bundle 'Pydiction'
 Bundle 'python_fold'
 Bundle 'JavaDecompiler.vim'
 Bundle 'indentjava.vim'
+Bundle 'jedi-vim'
 
 
 
