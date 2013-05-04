@@ -134,6 +134,7 @@ Bundle 'JavaDecompiler.vim'
 Bundle 'indentjava.vim'
 Bundle 'davidhalter/jedi-vim'
 Bundle 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
+Bundle 'tpope/vim-fugitive'
 
 
 "Bundle 'VimPdb'
