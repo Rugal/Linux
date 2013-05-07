@@ -129,6 +129,7 @@ Bundle 'The-NERD-tree'
 Bundle 'The-NERD-Commenter'
 Bundle 'indentpython.vim'
 Bundle 'Pydiction'
+Bundle 'mru.vim'
 Bundle 'python_fold'
 Bundle 'JavaDecompiler.vim'
 Bundle 'indentjava.vim'
@@ -136,6 +137,7 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'chriskempson/tomorrow-theme',{'rtp':'tomorrow-theme/vim'}
 
 
 
@@ -200,3 +202,11 @@ let g:pydiction_location='~/.vim/bundle/Pydiction/complete-dict'
 
 " powerline configure
 set laststatus=2
+
+" mru.vim configure
+"let MRU_File='~/.mru_files'
+let MRU_Max_Extries=200
+let MRU_Exclude_Files='^/tmp/.*\|^/var/tmp/.*'
+let MRU_auto_Close=1
+let MRU_Use_Current_Window=0
+nmap mru  :MRU<CR>
