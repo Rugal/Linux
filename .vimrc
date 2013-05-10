@@ -114,6 +114,7 @@ set foldmethod=indent
 "set spell
 "set spelllang=en
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+set ofu=syntaxcomplete#Complete
 nmap mx :!cmatrix<cr>
 
 " ---------------------------------vundle configure
@@ -137,11 +138,8 @@ Bundle 'davidhalter/jedi-vim'
 Bundle 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'chriskempson/tomorrow-theme',{'rtp':'tomorrow-theme/vim'}
-
-
-
-"Bundle 'VimPdb'
+Bundle 'Townk/vim-autoclose'
+Bundle 'vimomni'
 
 " Ctags configure
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -181,7 +179,8 @@ let g:miniBufExplModSelTarget = 1
 let g:miniBufExplMoreThanOne=0  
 
 " omnicomplete configure 
-set completeopt=longest,menu
+set completeopt=menu,longest
+
 
 " SuperTab configure
 let g:SuperTabRetainCompletionType=2
