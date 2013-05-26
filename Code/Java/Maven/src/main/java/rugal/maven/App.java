@@ -9,11 +9,16 @@ import java.util.Vector;
  */
 public class App 
 {
-    public static List<Integer> l=new Vector<>();
+    public static List<Integer> l;
     public static void main( String[] args )
     {
+        l=new Vector<Integer>();
         l.add(1);
         System.out.println( "Hello World!" );
         System.out.println(l.get(0));
+    }
+    public void ryujin()
+    {
+        System.out.println("Rugal Bernstein");
     }
 }
