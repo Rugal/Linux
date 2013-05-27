@@ -111,9 +111,12 @@ set softtabstop=4
 set autoindent
 set ff=unix
 set foldmethod=indent
+set list
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:< "set indent chars list
 "set spell
 "set spelllang=en
 autocmd FileType python set omnifunc=pythoncomplete#Complete
+autocmd FileType c set omnifunc=ccomplete#Complete
 set ofu=syntaxcomplete#Complete
 nmap mx :!cmatrix<cr>
 
@@ -139,7 +142,9 @@ Bundle 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Townk/vim-autoclose'
+Bundle 'Yggdroot/indentLine'
 Bundle 'vimomni'
+Bundle 'Vim-JDE'
 
 " Ctags configure
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -209,3 +214,4 @@ let MRU_Exclude_Files='^/tmp/.*\|^/var/tmp/.*'
 let MRU_auto_Close=1
 let MRU_Use_Current_Window=0
 nmap mru  :MRU<CR>
+
