@@ -17,7 +17,6 @@ public class App
         l.add(1);
         System.out.println( "Hello World!" );
         System.out.println(l.get(0));
-        Session s=new Session();
     }
     public void ryujin()
     {
