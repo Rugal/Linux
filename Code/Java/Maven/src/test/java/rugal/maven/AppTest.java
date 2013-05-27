@@ -13,5 +13,6 @@ public class AppTest
     {
         App a=new App();
         a.ryujin();
+        System.out.println("Rugal");
     }
 }

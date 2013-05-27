@@ -4,9 +4,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Entity
-@Table(name = "user")
+@Table
 public class Person implements java.io.Serializable {
     private static final long serialVersionUID = -4376187124011546736L;
 
@@ -14,6 +16,7 @@ public class Person implements java.io.Serializable {
     private String name;
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -22,7 +25,7 @@ public class Person implements java.io.Serializable {
         this.id = id;
     }
 
-    @Column(length = 50 , nullable = false , unique = true)
+    @Column(length = 50 , nullable = false)
     public String getName() {
         return name;
     }

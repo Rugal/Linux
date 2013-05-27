@@ -10,10 +10,6 @@
         <property name="connection.url">jdbc:mysql://localhost/test</property>
         <property name="connection.username">root</property>
         <property name="connection.password">900811</property>
-        <property name="initialSize" value="1"/>
-        <property name="maxActive" value="100"/>
-        <property name="maxIdle" value="2"/>
-        <property name="minIdle" value="1"/>
         <!--<property name="javax.persistence.validation.mode">none</property> -->
 
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -22,7 +18,8 @@
 
         <property name="show_sql">true</property>
         <property name="format_sql">false</property>
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">validate</property>
+        <mapping class="rugal.web.entity.Person"/>
     </session-factory>
 </hibernate-configuration>
 
