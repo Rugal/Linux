@@ -141,7 +141,7 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.9</version>
+            <version>1.2.12</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -213,7 +213,7 @@
                                 <goal>shade</goal>
                             </goals>
                             <configuration>
-                                <transformers>  
+                                <transformers>
                                     <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                         <mainClass>rugal.maven.App</mainClass>
                                     </transformer>
