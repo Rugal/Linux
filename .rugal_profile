@@ -33,3 +33,26 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 #curl -sL get.ascii.io | bash
 #wget http://www.geeknote.me/dist/geeknote_latest.deb
+#
+function install_eclim()
+{
+    ECLIPSE_HOME="/usr/local/eclipse"
+    ECLIM_JAR="$HOME/eclim_2.2.6.jar"
+    if [ ! -d $ECLIPSE_HOME  ]
+    then
+        echo "eclipse does not exists"
+        return
+    fi
+    if [ ! -e $ECLIM_JAR  ]
+    then
+        echo "eclim_jar does not exists"
+        return
+    fi
+    sudo apt-get install xvfb build-essential
+    if [ ! -e $ECLIPSE_HOME/eclimd  ]
+    then
+        java -Dvim.files=$HOME/.vim -Declipse.home=$ECLIPSE_HOME -jar $ECLIM_JAR install
+    fi
+    Xvfb :1 -screen 0 1024x768x24 &
+    DISPLAY=:1 $ECLIPSE_HOME/eclimd start
+}
