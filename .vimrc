@@ -144,7 +144,8 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Townk/vim-autoclose'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vimomni'
-Bundle 'Vim-JDE'
+"Bundle 'Valloric/YouCompleteMe'
+
 
 " Ctags configure
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -189,7 +190,7 @@ set completeopt=menu,longest
 
 " SuperTab configure
 let g:SuperTabRetainCompletionType=2
-let g:SuperTabDefaultCompletionType="<C-X><C-O>"
+let g:SuperTabDefaultCompletionType="<C-x><C-o>"
 
 " The-NERD-Tree configure
 let g:NERDTree_title="[NERDTree]"  
@@ -215,3 +216,7 @@ let MRU_auto_Close=1
 let MRU_Use_Current_Window=0
 nmap mru  :MRU<CR>
 
+
+"eclim configure
+"let g:EclimLogLevel=10
+let g:EclimCompletionMethod='omnifunc'
