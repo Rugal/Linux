@@ -145,6 +145,7 @@ Bundle 'Townk/vim-autoclose'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vimomni'
 "Bundle 'Valloric/YouCompleteMe'
+Bundle 'altercation/vim-colors-solarized'
 
 
 " Ctags configure
@@ -220,3 +221,5 @@ nmap mru  :MRU<CR>
 "eclim configure
 "let g:EclimLogLevel=10
 let g:EclimCompletionMethod='omnifunc'
+
+

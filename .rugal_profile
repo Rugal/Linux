@@ -23,7 +23,7 @@ alias dstat="dstat -cdlmnpsy"
 alias slurm="slurm -i wlan0"
 alias t="translate"
 alias ps="ps -ef|grep"
-alias v="vim"
+alias v="gvim"
 alias V="v"
 alias matrix="cmatrix -sb"
 
@@ -37,7 +37,7 @@ bind '"\e[B": history-search-forward'
 function install_eclim()
 {
     ECLIPSE_HOME="/usr/local/eclipse"
-    ECLIM_JAR="$HOME/eclim_2.2.6.jar"
+    ECLIM_JAR="$ECLIPSE_HOME/eclim_2.2.6.jar"
     if [ ! -d $ECLIPSE_HOME  ]
     then
         echo "eclipse does not exists"
@@ -55,4 +55,10 @@ function install_eclim()
     fi
     Xvfb :1 -screen 0 1024x768x24 &
     DISPLAY=:1 $ECLIPSE_HOME/eclimd start
+}
+function run_eclimd()
+{
+    ECLIPSE_HOME="/usr/local/eclipse"
+    ECLIMD="eclimd"
+    $ECLIPSE_HOME/$ECLIMD 1>/dev/null 2>&1     &
 }
