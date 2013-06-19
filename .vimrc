@@ -113,6 +113,7 @@ set ff=unix
 set foldmethod=indent
 set list
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:< "set indent chars list
+set ic
 "set spell
 "set spelllang=en
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -144,9 +145,20 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Townk/vim-autoclose'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vimomni'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'altercation/vim-colors-solarized'
 
+" wildmenu configure
+set wildmenu
+set wildmode=list:longest          " 补全时显示样式为多行
+set wildignore+=.hg,.git,.svn                    " 版本控制
+set wildignore+=*.pyc                            " Python 字节码
+set wildignore+=*.sw?                            " Vim 交换文件
+set wildignore+=*.aux,*.out,*.toc                " LaTeX 文件
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " 二进制图像
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " 已编译的对象文件
+set wildignore+=*.luac                           " Lua 字节码
+set wildignore+=*.DS_Store                       " OSX 糟糕物
 
 " Ctags configure
 map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
@@ -221,5 +233,4 @@ nmap mru  :MRU<CR>
 "eclim configure
 "let g:EclimLogLevel=10
 let g:EclimCompletionMethod='omnifunc'
-
 
