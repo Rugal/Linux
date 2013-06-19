@@ -119,7 +119,9 @@ set ic
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType c set omnifunc=ccomplete#Complete
 set ofu=syntaxcomplete#Complete
-nmap mx :!cmatrix<cr>
+if !has("gui_running")
+    nmap mx :!cmatrix<cr>
+endif
 
 " ---------------------------------vundle configure
 "  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
@@ -233,4 +235,3 @@ nmap mru  :MRU<CR>
 "eclim configure
 "let g:EclimLogLevel=10
 let g:EclimCompletionMethod='omnifunc'
-

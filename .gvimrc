@@ -1,4 +1,8 @@
 set guifont=Monaco\ 11
+set guioptions-=m
+set guioptions-=L
+set guioptions-=T
+set guioptions-=r
 
 "solarized configure
 set background=dark
