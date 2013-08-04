@@ -1,0 +1,61 @@
+function ffi()
+{
+    grep -D skip -nRe "$1" .
+}
+
+function ff() 
+{ 
+    find . -type f -iname '*'$*'*' -ls ; 
+} 
+
+function install_eclim()
+{
+    ECLIPSE_HOME="/usr/local/eclipse"
+    ECLIM_JAR="$ECLIPSE_HOME/eclim_2.2.6.jar"
+    if [ ! -d $ECLIPSE_HOME  ]
+    then
+        echo "eclipse does not exists"
+        return
+    fi
+    if [ ! -e $ECLIM_JAR  ]
+    then
+        echo "eclim_jar does not exists"
+        return
+    fi
+    sudo apt-get install xvfb build-essential
+    if [ ! -e $ECLIPSE_HOME/eclimd  ]
+    then
+        java -Dvim.files=$HOME/.vim -Declipse.home=$ECLIPSE_HOME -jar $ECLIM_JAR install
+    fi
+    Xvfb :1 -screen 0 1024x768x24 &
+    DISPLAY=:1 $ECLIPSE_HOME/eclimd start
+}
+function run_eclimd()
+{
+    ECLIPSE_HOME="/usr/local/eclipse"
+    $ECLIPSE_HOME/eclimd  1>/dev/null 2>&1     &
+}
+function install_vim()
+{
+    sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev \
+    libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev \
+    libxpm-dev libxt-dev python-dev ruby-dev mercurial
+    sudo apt-get remove vim vim-runtime gvim vim-common vim-tiny
+    cd ~
+    hg clone https://code.google.com/p/vim/
+    cd vim
+    ./configure --with-features=huge --enable-rubyinterp  --enable-pythoninterp \
+    --enable-perlinterp --enable-gui=gtk2 --enable-cscope \
+    --with-python-config-dir=/usr/lib/python2.7/config-i386-linux-gnu/
+    make && sudo make install && cd ; rm -rf vim
+}
+function install_powerline_font()
+{
+    cd ~
+    mkdir .fonts .fonts.conf.d
+    wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf \
+    -O ~/.fonts/PowerlineSymbols.otf
+    fc-cache -vf ~/.fonts
+    wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf \
+    -O ~/.fonts.conf.d/10-powerline-symbols.conf
+}

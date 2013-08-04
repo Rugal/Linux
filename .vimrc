@@ -102,8 +102,8 @@ endif
 " little tips
 set nu
 set cursorline
-set autoindent  
-set tabstop=4  
+set autoindent
+set tabstop=4
 set shiftwidth=4
 set expandtab
 set textwidth=79
@@ -147,8 +147,8 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Townk/vim-autoclose'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vimomni'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'altercation/vim-colors-solarized'
+Bundle 'Valloric/YouCompleteMe'
 
 " wildmenu configure
 set wildmenu
