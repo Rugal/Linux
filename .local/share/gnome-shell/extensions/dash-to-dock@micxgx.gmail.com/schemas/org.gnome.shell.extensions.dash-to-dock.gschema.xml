@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="gnome-shell-extensions">
+  <enum id='org.gnome.shell.extensions.dash-to-dock.clickAction'>
+    <value value='0' nick='skip'/>
+    <value value='1' nick='minimize'/>
+    <value value='2' nick='launch'/>
+    <value value='3' nick='cycle-windows'/>
+  </enum>
+  <schema path="/org/gnome/shell/extensions/dash-to-dock/" id="org.gnome.shell.extensions.dash-to-dock">
+    <key type="d" name="animation-time">
+      <default>0.25</default>
+      <summary>Animation time</summary>
+      <description>Sets the time duration of the autohide effect.</description>
+    </key>
+    <key type="d" name="show-delay">
+      <default>0.25</default>
+      <summary>Show delay</summary>
+      <description>Sets the delay after the mouse reaches the screen border before showing the dock.</description>
+    </key>
+    <key type="d" name="hide-delay">
+      <default>0.10</default>
+      <summary>Show delay</summary>
+      <description>Sets the delay after the mouse left the dock before hiding it.</description>
+    </key>
+    <key type="b" name="opaque-background">
+      <default>true</default>
+      <summary>Dash background is opaque</summary>
+      <description>Makes the background of the dash opaque improving readability when in autohide mode.</description>
+    </key>
+    <key type="b" name="opaque-background-always">
+      <default>false</default>
+      <summary>Dash background always opaque</summary>
+      <description>Makes the background of the dash opaque improving readability even when not in autohide mode.</description>
+    </key>
+    <key type="d" name="background-opacity">
+      <default>0.8</default>
+      <summary>Opacity of the dash background</summary>
+      <description>Sets the opacity of the dash background  when in autohide mode.</description>
+    </key>
+    <key type="b" name="intellihide">
+      <default>true</default>
+      <summary>Dock dodges windows</summary>
+      <description>Enable or disable intellihide mode</description>
+    </key>
+    <key type="b" name="intellihide-perapp">
+      <default>false</default>
+      <summary>Dock dodges only same app windows</summary>
+      <description></description>
+    </key>
+    <key type="b" name="autohide">
+      <default>true</default>
+      <summary>Dock shown on mouse over</summary>
+      <description>Enable or disable autohide mode</description>
+    </key>
+    <key type="b" name="dock-fixed">
+      <default>false</default>
+      <summary>Dock always visible</summary>
+      <description>Dock is always visible</description>
+    </key>
+    <key type="b" name="scroll-switch-workspace">
+      <default>true</default>
+      <summary>Switch workspace by scrolling over the dock</summary>
+      <description>Add the possibility to switch workspace by mouse scrolling over the dock.</description>
+    </key>
+    <key type="b" name="scroll-switch-workspace-whole">
+      <default>false</default>
+      <summary>Whole dock is sensible to scroll events</summary>
+      <description>Whether thw whole dock when scrolled above is sensible to scroll events or only an 1px wide area close to the screen border.</description>
+    </key>
+    <key type="b" name="scroll-switch-workspace-one-at-a-time">
+      <default>false</default>
+      <summary>Switch worskpace one at a time</summary>
+      <description>Switch only one workspace on each scroll event</description>
+    </key>
+    <key type="i" name="scroll-switch-workspace-dead-time">
+      <default>250</default>
+      <summary>A deadtime in ms</summary>
+      <description>A deadtime between each worskapace switch triggere by mouse scroll</description>
+    </key>
+    <key type="i" name="dash-max-icon-size">
+      <default>48</default>
+      <summary>Maximum dash icon size</summary>
+      <description>Set the allowed maximum dash icon size. Allowed range: 16..64.</description>
+    </key>
+    <key type="b" name="show-running">
+      <default>true</default>
+      <summary>Show running apps</summary>
+      <description>Show or hide running appplications icons in the dash</description>
+    </key>
+    <key type="b" name="show-favorites">
+      <default>true</default>
+      <summary>Show favorites apps</summary>
+      <description>Show or hide favorite appplications icons in the dash</description>
+    </key>
+    <key type="b" name="bolt-support">
+      <default>true</default>
+      <summary>Basic compatibility with bolt extensions</summary>
+      <description>Make the extension work properly when bolt extensions is enabled</description>
+    </key>
+    <key type="d" name="height-fraction">
+      <default>0.95</default>
+      <summary>Dock max height (fraction of available space)</summary>
+    </key>
+    <key type="b" name="extend-height">
+      <default>false</default>
+      <summary>Extend the dock container to all the available height</summary>
+    </key>
+    <key type="i" name="preferred-monitor">
+      <default>-1</default>
+      <summary>Monitor on which putting the dock</summary>
+      <description>Set on which monitor to put the dock, use -1 for the primary one</description>
+    </key>
+    <key type="b" name="customize-click">
+      <default>false</default>
+      <summary>Customize click behaviour</summary>
+      <description>Custmize action on various mouse events</description>
+    </key>
+    <key type="b" name="minimize-shift">
+      <default>true</default>
+      <summary>Minimize on shift+click</summary>
+    </key>
+    <key type="b" name="activate-single-window">
+      <default>true</default>
+      <summary>Activate only one window</summary>
+    </key>
+    <key name="click-action" enum="org.gnome.shell.extensions.dash-to-dock.clickAction">
+      <default>'cycle-windows'</default>
+      <summary>Action when clicking on a running app</summary>
+      <description>Set the action that is executed when clicking on the icon of a running application</description>
+    </key>
+  </schema>
+</schemalist>

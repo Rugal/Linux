@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<application-state>
+  <context id="">
+    <application id="update-manager.desktop" open-window-count="0" score="1" last-seen="1375626928"/>
+    <application id="gnome-terminal.desktop" open-window-count="0" score="21" last-seen="1375628663"/>
+    <application id="gnome-control-center.desktop" open-window-count="0" score="4" last-seen="1375635037"/>
+    <application id="guake.desktop" open-window-count="0" score="2" last-seen="1375635272"/>
+    <application id="chromium-browser.desktop" open-window-count="1" score="1072" last-seen="1375638272"/>
+    <application id="gnome-shell-extension-prefs.desktop" open-window-count="0" score="6" last-seen="1375638192"/>
+    <application id="gnome-tweak-tool.desktop" open-window-count="0" score="1" last-seen="1375627205"/>
+  </context>
+</application-state>
