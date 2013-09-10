@@ -35,41 +35,4 @@ bind '"\e[B": history-search-forward'
 #wget http://www.geeknote.me/dist/geeknote_latest.deb
 #
 #
-
-function ffi()
-{
-    grep -D skip -nRe "$1" .
-}
-
-function ff() 
-{ 
-    find . -type f -iname '*'$*'*' -ls ; 
-} 
-
-function install_eclim()
-{
-    ECLIPSE_HOME="/usr/local/eclipse"
-    ECLIM_JAR="$ECLIPSE_HOME/eclim_2.2.6.jar"
-    if [ ! -d $ECLIPSE_HOME  ]
-    then
-        echo "eclipse does not exists"
-        return
-    fi
-    if [ ! -e $ECLIM_JAR  ]
-    then
-        echo "eclim_jar does not exists"
-        return
-    fi
-    sudo apt-get install xvfb build-essential
-    if [ ! -e $ECLIPSE_HOME/eclimd  ]
-    then
-        java -Dvim.files=$HOME/.vim -Declipse.home=$ECLIPSE_HOME -jar $ECLIM_JAR install
-    fi
-    Xvfb :1 -screen 0 1024x768x24 &
-    DISPLAY=:1 $ECLIPSE_HOME/eclimd start
-}
-function run_eclimd()
-{
-    ECLIPSE_HOME="/usr/local/eclipse"
-    $ECLIPSE_HOME/eclimd  1>/dev/null 2>&1     &
-}
+source ~/.rugal_function
