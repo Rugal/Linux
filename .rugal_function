@@ -60,11 +60,23 @@ function install_powerline_font()
     wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf \
     -O ~/.fonts.conf.d/10-powerline-symbols.conf
 }
-function init_vim_mvn()
+function init_eclim_classpath()
 {
+    if [ ! -e pom.xml  ]
+    then
+        exit
+    fi
     if [ ! -e .project ]
     then
-        mvn eclipse:eclipse
-        vim +MvnRepo +ProjectImport . +qa
+        do_init_eclim_classpath
+    elif [ $# == 1  ]
+    then
+        rm -rf .settings .project .classpath
+        do_init_eclim_classpath
     fi
+}
+function do_init_eclim_classpath()
+{
+    mvn eclipse:eclipse
+    vim +MvnRepo +ProjectImport . +qa
 }
