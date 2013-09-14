@@ -52,6 +52,7 @@ public class VenditionLog implements Serializable {
     private Goods gid;
 
     public VenditionLog() {
+        this.logTime = new Date().getTime();
     }
 
     public VenditionLog(Goods goods, Customer customer, Operator operator, Integer quantity, Float price) {

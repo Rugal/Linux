@@ -49,6 +49,7 @@ public class StockLog implements Serializable {
     private Vendor vid;
 
     public StockLog() {
+        this.logTime = new Date().getTime();
     }
 
     public StockLog(Goods goods, Vendor vendor, Operator operator, Integer quantity) {
