@@ -27,6 +27,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Operator.findAll", query = "SELECT o FROM Operator o")})
 public class Operator implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -105,7 +106,7 @@ public class Operator implements Serializable {
             return false;
         }
         Operator other = (Operator) object;
-        if ((this.oid == null && other.oid != null) || (this.oid != null && !this.oid.equals(other.oid))) {
+        if ((this.oid == null && other.oid != null) || (this.oid != null && !this.oid.equals(other.oid)) || (this.password != null && !this.password.equals(other.password))) {
             return false;
         }
         return true;
@@ -115,5 +116,4 @@ public class Operator implements Serializable {
     public String toString() {
         return "rugal.twodimensions.core.entity.Operator[ oid=" + oid + " ]";
     }
-    
 }

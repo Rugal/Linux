@@ -5,6 +5,8 @@
 package rugal.twodimensions.core.dao.impl;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.springframework.stereotype.Repository;
 import rugal.common.hibernate.HibernateBaseDao;
 import rugal.common.page.Pagination;
@@ -21,6 +23,22 @@ public class VenditionLogDaoImpl extends HibernateBaseDao<VenditionLog, Integer>
     @Override
     public Pagination getPage(int pageNo, int pageSize) {
         Criteria crit = createCriteria();
+        Pagination page = findByCriteria(crit, pageNo, pageSize);
+        return page;
+    }
+
+    @Override
+    public Pagination getPageByGoods(boolean asc, int pageNo, int pageSize) {
+//        String hql = "SELECT bean.gid,sum(bean.quantity) FROM VenditionLog bean GROUP BY bean.gid ORDER BY :order";
+//        Query query = getSession().createQuery(hql);
+//        query.setParameter("order", (asc ? "asc" : "desc"));
+//        query.list();
+        Criteria crit = createCriteria();
+        crit.setProjection(Projections.projectionList()
+                .add(Projections.alias(Projections.groupProperty("gid"), "goods_number"))
+                .add(Projections.sum("quantity").as("total")));
+        Order o = asc ? Order.asc("total") : Order.desc("total");
+        crit.addOrder(o);
         Pagination page = findByCriteria(crit, pageNo, pageSize);
         return page;
     }

@@ -96,6 +96,13 @@ public class Customer implements Serializable {
         this.credit = credit;
     }
 
+    public void changeCredit(int num) {
+        this.credit += num;
+        if (this.credit < 0) {
+            this.credit = 0;
+        }
+    }
+
     public Long getBirthday() {
         return birthday;
     }

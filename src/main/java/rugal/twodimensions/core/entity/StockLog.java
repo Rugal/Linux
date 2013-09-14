@@ -5,6 +5,7 @@
 package rugal.twodimensions.core.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +27,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "StockLog.findAll", query = "SELECT s FROM StockLog s")})
 public class StockLog implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,6 +49,14 @@ public class StockLog implements Serializable {
     private Vendor vid;
 
     public StockLog() {
+    }
+
+    public StockLog(Goods goods, Vendor vendor, Operator operator, Integer quantity) {
+        this.oid = operator;
+        this.vid = vendor;
+        this.gid = goods;
+        this.quantity = quantity;
+        this.logTime = new Date().getTime();
     }
 
     public StockLog(Integer slid) {
@@ -125,5 +135,4 @@ public class StockLog implements Serializable {
     public String toString() {
         return "rugal.twodimensions.core.entity.StockLog[ slid=" + slid + " ]";
     }
-    
 }

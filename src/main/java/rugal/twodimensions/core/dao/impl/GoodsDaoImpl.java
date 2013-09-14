@@ -4,6 +4,7 @@
  */
 package rugal.twodimensions.core.dao.impl;
 
+import java.util.List;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 import rugal.common.hibernate.HibernateBaseDao;
@@ -23,6 +24,10 @@ public class GoodsDaoImpl extends HibernateBaseDao<Goods, Integer> implements Go
         Criteria crit = createCriteria();
         Pagination page = findByCriteria(crit, pageNo, pageSize);
         return page;
+    }
+
+    public List<Goods> findByName(String name) {
+        return super.findByPropertyVague("name", name);
     }
 
     @Override

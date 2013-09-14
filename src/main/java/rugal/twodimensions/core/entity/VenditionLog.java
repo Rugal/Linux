@@ -5,6 +5,7 @@
 package rugal.twodimensions.core.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -51,6 +52,19 @@ public class VenditionLog implements Serializable {
     private Goods gid;
 
     public VenditionLog() {
+    }
+
+    public VenditionLog(Goods goods, Customer customer, Operator operator, Integer quantity, Float price) {
+        this.gid = goods;
+        this.cid = customer;
+        this.oid = operator;
+        this.quantity = quantity;
+        this.logTime = new Date().getTime();
+        if (null != price) {
+            this.actualPrice = price;
+        } else {
+            this.actualPrice = goods.getSellPrice();
+        }
     }
 
     public VenditionLog(Integer vlid) {

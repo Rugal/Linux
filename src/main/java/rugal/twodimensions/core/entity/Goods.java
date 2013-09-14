@@ -30,6 +30,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
     @NamedQuery(name = "Goods.findAll", query = "SELECT g FROM Goods g")})
 public class Goods implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -113,6 +114,21 @@ public class Goods implements Serializable {
         this.unit = unit;
     }
 
+    public boolean sell(int num) {
+        boolean value = false;
+        if (num > 0 && this.quantity >= num) {
+            this.quantity -= num;
+            value = true;
+        }
+        return value;
+    }
+
+    public void stock(int num) {
+        if (num > 0) {
+            this.quantity += num;
+        }
+    }
+
     public Integer getQuantity() {
         return quantity;
     }
@@ -169,5 +185,4 @@ public class Goods implements Serializable {
     public String toString() {
         return "rugal.twodimensions.core.entity.Goods[ gid=" + gid + " ]";
     }
-    
 }
