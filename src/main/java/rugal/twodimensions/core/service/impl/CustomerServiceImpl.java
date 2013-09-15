@@ -5,6 +5,7 @@
 package rugal.twodimensions.core.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import rugal.common.hibernate.Updater;
 import rugal.common.page.Pagination;
 import rugal.twodimensions.core.dao.CustomerDao;
@@ -15,29 +16,30 @@ import rugal.twodimensions.core.service.CustomerService;
  *
  * @author rugal
  */
+@Service
 public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
-    private CustomerDao customerDao;
+    private CustomerDao dao;
 
     @Override
     public Customer findById(Integer id) {
-        return customerDao.findById(id);
+        return dao.findById(id);
     }
 
     @Override
     public Pagination getPage(int pageNo, int pageSize) {
-        return customerDao.getPage(pageNo, pageSize);
+        return dao.getPage(pageNo, pageSize);
     }
 
     @Override
     public Customer deleteById(Integer id) {
-        return customerDao.deleteById(id);
+        return dao.deleteById(id);
     }
 
     @Override
     public Customer save(Customer bean) {
-        return customerDao.save(bean);
+        return dao.save(bean);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class CustomerServiceImpl implements CustomerService {
         Updater<Customer> updater = new Updater<Customer>(bean, Updater.UpdateMode.MIN);
         updater.include("membership");
         bean.setMembership(1);
-        return customerDao.updateByUpdater(updater);
+        return dao.updateByUpdater(updater);
     }
 
     @Override
@@ -53,6 +55,6 @@ public class CustomerServiceImpl implements CustomerService {
         Updater<Customer> updater = new Updater<Customer>(bean, Updater.UpdateMode.MIN);
         updater.include("credit");
         bean.changeCredit(num);
-        return customerDao.updateByUpdater(updater);
+        return dao.updateByUpdater(updater);
     }
 }

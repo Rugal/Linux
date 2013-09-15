@@ -23,6 +23,7 @@ public class VenditionLogDaoImpl extends HibernateBaseDao<VenditionLog, Integer>
     @Override
     public Pagination getPage(int pageNo, int pageSize) {
         Criteria crit = createCriteria();
+        crit.addOrder(Order.desc("log_time"));
         Pagination page = findByCriteria(crit, pageNo, pageSize);
         return page;
     }

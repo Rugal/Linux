@@ -5,6 +5,7 @@
 package rugal.twodimensions.core.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import rugal.common.page.Pagination;
 import rugal.twodimensions.core.dao.VenditionLogDao;
 import rugal.twodimensions.core.entity.VenditionLog;
@@ -14,16 +15,18 @@ import rugal.twodimensions.core.service.VenditionLogService;
  *
  * @author rugal
  */
+@Service
 public class VenditionLogServiceImpl implements VenditionLogService {
 
     @Autowired
     private VenditionLogDao dao;
 
-    @Override
+//    @Override
     public VenditionLog deleteById(Integer id) {
         return dao.deleteById(id);
     }
 
+    @Override
     public Pagination getPageByGoods(boolean asc, int pageNo, int pageSize) {
         return dao.getPageByGoods(asc, pageNo, pageSize);
     }
@@ -38,7 +41,7 @@ public class VenditionLogServiceImpl implements VenditionLogService {
         return dao.getPage(pageNo, pageSize);
     }
 
-    @Override
+//    @Override
     public VenditionLog save(VenditionLog bean) {
         return dao.save(bean);
     }

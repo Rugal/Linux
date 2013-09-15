@@ -13,12 +13,9 @@ import rugal.twodimensions.core.entity.StockLog;
  */
 public interface StockLogService {
 
-    StockLog deleteById(Integer id);
-
+//    StockLog deleteById(Integer id);
     StockLog findById(Integer id);
 
     Pagination getPage(int pageNo, int pageSize);
-
-    StockLog save(StockLog bean);
-    
+//    StockLog save(StockLog bean);
 }

@@ -13,13 +13,9 @@ import rugal.twodimensions.core.entity.VenditionLog;
  */
 public interface VenditionLogService {
 
-    VenditionLog deleteById(Integer id);
-
     Pagination getPageByGoods(boolean asc, int pageNo, int pageSize);
 
     VenditionLog findById(Integer id);
 
     Pagination getPage(int pageNo, int pageSize);
-
-    VenditionLog save(VenditionLog bean);
 }

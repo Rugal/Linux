@@ -4,12 +4,12 @@
  */
 package rugal.twodimensions.core.service.impl;
 
-import rugal.twodimensions.core.service.StockLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rugal.common.page.Pagination;
 import rugal.twodimensions.core.dao.StockLogDao;
 import rugal.twodimensions.core.entity.StockLog;
+import rugal.twodimensions.core.service.StockLogService;
 
 /**
  *
@@ -21,7 +21,7 @@ public class StockLogServiceImpl implements StockLogService {
     @Autowired
     private StockLogDao stockLogDao;
 
-    @Override
+//    @Override
     public StockLog deleteById(Integer id) {
         return stockLogDao.deleteById(id);
     }
@@ -36,7 +36,7 @@ public class StockLogServiceImpl implements StockLogService {
         return stockLogDao.getPage(pageNo, pageSize);
     }
 
-    @Override
+//    @Override
     public StockLog save(StockLog bean) {
         return stockLogDao.save(bean);
     }

@@ -5,6 +5,7 @@
 package rugal.twodimensions.core.dao.impl;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 import rugal.common.hibernate.HibernateBaseDao;
 import rugal.common.page.Pagination;
@@ -21,6 +22,7 @@ public class StockLogDaoImpl extends HibernateBaseDao<StockLog, Integer> impleme
     @Override
     public Pagination getPage(int pageNo, int pageSize) {
         Criteria crit = createCriteria();
+        crit.addOrder(Order.desc("log_time"));
         Pagination page = findByCriteria(crit, pageNo, pageSize);
         return page;
     }

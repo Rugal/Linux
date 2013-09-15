@@ -5,6 +5,7 @@
 package rugal.twodimensions.core.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import rugal.common.page.Pagination;
 import rugal.twodimensions.core.dao.VendorDao;
 import rugal.twodimensions.core.entity.Vendor;
@@ -14,6 +15,7 @@ import rugal.twodimensions.core.service.VendorService;
  *
  * @author rugal
  */
+@Service
 public class VendorServiceImpl implements VendorService {
 
     @Autowired
