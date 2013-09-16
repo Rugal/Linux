@@ -2,6 +2,7 @@
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <display-name/>
     <!-- 指定Spring Bean的配置文件所在目录。默认配置在WEB-INF目录下 -->
+    <!-- ====================================== -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath*:applicationContext.xml</param-value>
@@ -19,11 +20,16 @@
         </init-param>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
     <servlet-mapping>
         <servlet-name>dispatcher</servlet-name>
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
-    <!--open session-->
+    <!--opening session-->
     <filter>
         <filter-name>session</filter-name>
         <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
@@ -32,14 +38,11 @@
         <filter-name>session</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
     <!-- Spring配置 -->
     <!-- ====================================== -->
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-
     <filter>
         <filter-name>encoding</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -52,17 +55,61 @@
         <filter-name>encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
-
-
-    <!-- java web session -->
+    <!-- richfaces configure -->
     <!-- ====================================== -->
+    <!--<context-param>-->
+    <!--<param-name>javax.faces.STATE_SAVING_METHOD</param-name>-->
+    <!--<param-value>server</param-value>-->
+    <!--</context-param>-->
+    <!--<context-param>-->
+    <!--<param-name>org.richfaces.SKIN</param-name>-->
+    <!--<param-value>blueSky</param-value>-->
+    <!--</context-param>-->
+    <!--<context-param>-->
+    <!--<param-name>org.richfaces.CONTROL_SKINNING</param-name>-->
+    <!--<param-value>enable</param-value>-->
+    <!--</context-param>-->
+    <!--<filter>-->
+    <!--<display-name>RichFaces Filter</display-name>-->
+    <!--<filter-name>richfaces</filter-name>-->
+    <!--<filter-class>org.ajax4jsf.Filter</filter-class>-->
+    <!--</filter>-->
+    <!--<filter-mapping>-->
+    <!--<filter-name>richfaces</filter-name>-->
+    <!--<servlet-name>Faces_Servlet</servlet-name>-->
+    <!--<dispatcher>REQUEST</dispatcher>-->
+    <!--<dispatcher>FORWARD</dispatcher>-->
+    <!--<dispatcher>INCLUDE</dispatcher>-->
+    <!--</filter-mapping>-->
+    <!--<listener>-->
+    <!--<listener-class>com.sun.faces.config.ConfigureListener</listener-class>-->
+    <!--</listener>-->
+    <!--[>Faces Servlet<]-->
+    <!--<servlet>-->
+    <!--<servlet-name>Faces_Servlet</servlet-name>-->
+    <!--<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>-->
+    <!--<load-on-startup>1</load-on-startup>-->
+    <!--</servlet>-->
+    <!--[> Faces Servlet Mapping <]-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>Faces_Servlet</servlet-name>-->
+    <!--<url-pattern>*.jsf</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<login-config>-->
+    <!--<auth-method>BASIC</auth-method>-->
+    <!--</login-config>-->
+    <!--java web session-->
+    <!-- ====================================== -->
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>faces//index.html</welcome-file>
     </welcome-file-list>
 </web-app>
