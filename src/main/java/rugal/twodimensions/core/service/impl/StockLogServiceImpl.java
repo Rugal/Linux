@@ -32,8 +32,8 @@ public class StockLogServiceImpl implements StockLogService {
     }
 
     @Override
-    public Pagination getPage(int pageNo, int pageSize) {
-        return stockLogDao.getPage(pageNo, pageSize);
+    public Pagination getPage(boolean desc, int pageNo, int pageSize) {
+        return stockLogDao.getPage(desc,pageNo, pageSize);
     }
 
 //    @Override

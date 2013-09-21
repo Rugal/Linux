@@ -1,6 +1,6 @@
 /target/
-/src/test/
 /nb-configuration.xml
 /.classpath
 /.project
 /.settings
+!/src/test/java/

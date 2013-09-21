@@ -18,7 +18,7 @@ public interface StockLogDao {
 
     StockLog findById(Integer id);
 
-    Pagination getPage(int pageNo, int pageSize);
+    Pagination getPage(boolean desc, int pageNo, int pageSize);
 
     StockLog save(StockLog bean);
 

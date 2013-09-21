@@ -19,39 +19,40 @@ import rugal.twodimensions.core.entity.StockLog;
 @Repository
 public class StockLogDaoImpl extends HibernateBaseDao<StockLog, Integer> implements StockLogDao {
 
-    @Override
-    public Pagination getPage(int pageNo, int pageSize) {
-        Criteria crit = createCriteria();
-        crit.addOrder(Order.desc("log_time"));
-        Pagination page = findByCriteria(crit, pageNo, pageSize);
-        return page;
-    }
+	@Override
+	public Pagination getPage(boolean desc, int pageNo, int pageSize) {
+		Criteria crit = createCriteria();
+		Order o = desc ? Order.desc("logTime") : Order.asc("logTime");
+		crit.addOrder(o);
+		Pagination page = findByCriteria(crit, pageNo, pageSize);
+		return page;
+	}
 
-    @Override
-    public StockLog findById(Integer id) {
-        StockLog entity = get(id);
-        return entity;
-    }
+	@Override
+	public StockLog findById(Integer id) {
+		StockLog entity = get(id);
+		return entity;
+	}
 
-    @Override
+	@Override
 //    @Transactional(propagation = Propagation.REQUIRED)
-    public StockLog save(StockLog bean) {
-        getSession().save(bean);
-        return bean;
-    }
+	public StockLog save(StockLog bean) {
+		getSession().save(bean);
+		return bean;
+	}
 
-    @Override
+	@Override
 //    @Transactional(propagation = Propagation.REQUIRED)
-    public StockLog deleteById(Integer id) {
-        StockLog entity = super.get(id);
-        if (entity != null) {
-            getSession().delete(entity);
-        }
-        return entity;
-    }
+	public StockLog deleteById(Integer id) {
+		StockLog entity = super.get(id);
+		if (entity != null) {
+			getSession().delete(entity);
+		}
+		return entity;
+	}
 
-    @Override
-    protected Class<StockLog> getEntityClass() {
-        return StockLog.class;
-    }
+	@Override
+	protected Class<StockLog> getEntityClass() {
+		return StockLog.class;
+	}
 }

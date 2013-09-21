@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -25,115 +26,120 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "stock_log", catalog = "two_dimension", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "StockLog.findAll", query = "SELECT s FROM StockLog s")})
+	@NamedQuery(name = "StockLog.findAll", query = "SELECT s FROM StockLog s")})
 public class StockLog implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "slid", nullable = false)
-    private Integer slid;
-    @Column(name = "log_time")
-    private Long logTime;
-    @Column(name = "quantity")
-    private Integer quantity;
-    @JoinColumn(name = "oid", referencedColumnName = "oid")
-    @ManyToOne
-    private Operator oid;
-    @JoinColumn(name = "gid", referencedColumnName = "gid")
-    @ManyToOne
-    private Goods gid;
-    @JoinColumn(name = "vid", referencedColumnName = "vid")
-    @ManyToOne
-    private Vendor vid;
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "slid", nullable = false)
+	private Integer slid;
+	@Column(name = "log_time")
+	private Long logTime;
+	@Column(name = "quantity")
+	private Integer quantity;
 
-    public StockLog() {
-        this.logTime = new Date().getTime();
-    }
+	@JoinColumn(name = "oid", referencedColumnName = "oid")
+	@ManyToOne
+	private Operator oid;
+	@JoinColumn(name = "gid", referencedColumnName = "gid")
+	@ManyToOne
+	private Goods gid;
+	@JoinColumn(name = "vid", referencedColumnName = "vid")
+	@ManyToOne
+	private Vendor vid;
 
-    public StockLog(Goods goods, Vendor vendor, Operator operator, Integer quantity) {
-        this.oid = operator;
-        this.vid = vendor;
-        this.gid = goods;
-        this.quantity = quantity;
-        this.logTime = new Date().getTime();
-    }
+	public StockLog() {
+		this.logTime = new Date().getTime();
+	}
 
-    public StockLog(Integer slid) {
-        this.slid = slid;
-    }
+	public StockLog(Goods goods, Vendor vendor, Operator operator, Integer quantity) {
+		this.oid = operator;
+		this.vid = vendor;
+		this.gid = goods;
+		this.quantity = quantity;
+		this.logTime = new Date().getTime();
+	}
 
-    public Integer getSlid() {
-        return slid;
-    }
+	public StockLog(Integer slid) {
+		this.slid = slid;
+	}
 
-    public void setSlid(Integer slid) {
-        this.slid = slid;
-    }
+	public Integer getSlid() {
+		return slid;
+	}
 
-    public Long getLogTime() {
-        return logTime;
-    }
+	public void setSlid(Integer slid) {
+		this.slid = slid;
+	}
 
-    public void setLogTime(Long logTime) {
-        this.logTime = logTime;
-    }
+	public Long getLogTime() {
+		return logTime;
+	}
 
-    public Integer getQuantity() {
-        return quantity;
-    }
+	public void setLogTime(Long logTime) {
+		this.logTime = logTime;
+	}
 
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
+	public Date getFormalLogTime() {
+		return new Date(this.logTime);
+	}
 
-    public Operator getOid() {
-        return oid;
-    }
+	public Integer getQuantity() {
+		return quantity;
+	}
 
-    public void setOid(Operator oid) {
-        this.oid = oid;
-    }
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
 
-    public Goods getGid() {
-        return gid;
-    }
+	public Operator getOid() {
+		return oid;
+	}
 
-    public void setGid(Goods gid) {
-        this.gid = gid;
-    }
+	public void setOid(Operator oid) {
+		this.oid = oid;
+	}
 
-    public Vendor getVid() {
-        return vid;
-    }
+	public Goods getGid() {
+		return gid;
+	}
 
-    public void setVid(Vendor vid) {
-        this.vid = vid;
-    }
+	public void setGid(Goods gid) {
+		this.gid = gid;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (slid != null ? slid.hashCode() : 0);
-        return hash;
-    }
+	public Vendor getVid() {
+		return vid;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof StockLog)) {
-            return false;
-        }
-        StockLog other = (StockLog) object;
-        if ((this.slid == null && other.slid != null) || (this.slid != null && !this.slid.equals(other.slid))) {
-            return false;
-        }
-        return true;
-    }
+	public void setVid(Vendor vid) {
+		this.vid = vid;
+	}
 
-    @Override
-    public String toString() {
-        return "rugal.twodimensions.core.entity.StockLog[ slid=" + slid + " ]";
-    }
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (slid != null ? slid.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof StockLog)) {
+			return false;
+		}
+		StockLog other = (StockLog) object;
+		if ((this.slid == null && other.slid != null) || (this.slid != null && !this.slid.equals(other.slid))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "rugal.twodimensions.core.entity.StockLog[ slid=" + slid + " ]";
+	}
 }

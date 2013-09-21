@@ -26,6 +26,7 @@ public class GoodsDaoImpl extends HibernateBaseDao<Goods, Integer> implements Go
         return page;
     }
 
+	@Override
     public List<Goods> findByName(String name) {
         return super.findByPropertyVague("name", name);
     }

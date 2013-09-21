@@ -25,106 +25,117 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "vendor", catalog = "two_dimension", schema = "")
 @NamedQueries({
-    @NamedQuery(name = "Vendor.findAll", query = "SELECT v FROM Vendor v")})
+	@NamedQuery(name = "Vendor.findAll", query = "SELECT v FROM Vendor v")})
 public class Vendor implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "vid", nullable = false)
-    private Integer vid;
-    @Size(max = 100)
-    @Column(name = "name", length = 100)
-    private String name;
-    @Size(max = 100)
-    @Column(name = "website", length = 100)
-    private String website;
-    @Size(max = 100)
-    @Column(name = "field", length = 100)
-    private String field;
-    @OneToMany(mappedBy = "vid")
-    private List<Goods> goodsList;
-    @OneToMany(mappedBy = "vid")
-    private List<StockLog> stockLogList;
 
-    public Vendor() {
-    }
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Basic(optional = false)
+	@Column(name = "vid", nullable = false)
+	private Integer vid;
+	@Size(max = 100)
+	@Column(name = "name", length = 100)
+	private String name;
+	@Size(max = 100)
+	@Column(name = "website", length = 100)
+	private String website;
+	@Size(max = 100)
+	@Column(name = "field", length = 100)
+	private String field;
+	@Size(max = 15)
+	@Column(name = "contact", length = 15)
+	private String contact;
+	@OneToMany(mappedBy = "vid")
+	private List<Goods> goodsList;
+	@OneToMany(mappedBy = "vid")
+	private List<StockLog> stockLogList;
 
-    public Vendor(Integer vid) {
-        this.vid = vid;
-    }
+	public Vendor() {
+	}
 
-    public Integer getVid() {
-        return vid;
-    }
+	public Vendor(Integer vid) {
+		this.vid = vid;
+	}
 
-    public void setVid(Integer vid) {
-        this.vid = vid;
-    }
+	public Integer getVid() {
+		return vid;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setVid(Integer vid) {
+		this.vid = vid;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getWebsite() {
-        return website;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setWebsite(String website) {
-        this.website = website;
-    }
+	public String getWebsite() {
+		return website;
+	}
 
-    public String getField() {
-        return field;
-    }
+	public void setWebsite(String website) {
+		this.website = website;
+	}
 
-    public void setField(String field) {
-        this.field = field;
-    }
+	public String getContact() {
+		return contact;
+	}
 
-    public List<Goods> getGoodsList() {
-        return goodsList;
-    }
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
 
-    public void setGoodsList(List<Goods> goodsList) {
-        this.goodsList = goodsList;
-    }
+	public String getField() {
+		return field;
+	}
 
-    public List<StockLog> getStockLogList() {
-        return stockLogList;
-    }
+	public void setField(String field) {
+		this.field = field;
+	}
 
-    public void setStockLogList(List<StockLog> stockLogList) {
-        this.stockLogList = stockLogList;
-    }
+	public List<Goods> getGoodsList() {
+		return goodsList;
+	}
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (vid != null ? vid.hashCode() : 0);
-        return hash;
-    }
+	public void setGoodsList(List<Goods> goodsList) {
+		this.goodsList = goodsList;
+	}
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Vendor)) {
-            return false;
-        }
-        Vendor other = (Vendor) object;
-        if ((this.vid == null && other.vid != null) || (this.vid != null && !this.vid.equals(other.vid))) {
-            return false;
-        }
-        return true;
-    }
+	public List<StockLog> getStockLogList() {
+		return stockLogList;
+	}
 
-    @Override
-    public String toString() {
-        return "rugal.twodimensions.core.entity.Vendor[ vid=" + vid + " ]";
-    }
-    
+	public void setStockLogList(List<StockLog> stockLogList) {
+		this.stockLogList = stockLogList;
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 0;
+		hash += (vid != null ? vid.hashCode() : 0);
+		return hash;
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		// TODO: Warning - this method won't work in the case the id fields are not set
+		if (!(object instanceof Vendor)) {
+			return false;
+		}
+		Vendor other = (Vendor) object;
+		if ((this.vid == null && other.vid != null) || (this.vid != null && !this.vid.equals(other.vid))) {
+			return false;
+		}
+		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "rugal.twodimensions.core.entity.Vendor[ vid=" + vid + " ]";
+	}
 }

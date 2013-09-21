@@ -11,23 +11,23 @@
           http://www.springframework.org/schema/aop    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
           http://www.springframework.org/schema/mvc    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 ">
-    <mvc:annotation-driven />
-    <mvc:default-servlet-handler/>
-    <!-- 启用spring mvc 注解 -->
-    <context:annotation-config/>
-    <!-- 扫描注解配置的包 -->
-    <context:component-scan base-package="rugal">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-    </context:component-scan>
-    <!-- 完成请求和注解POJO的映射 -->
-    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
-    <!--配置一个viewResolver来处理返回的页面,配置前置和后置-->
-    <bean id="viewresolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/pages/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-    </bean>
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler default-servlet-name="default"/>
+	<!-- 启用spring mvc 注解 -->
+	<context:annotation-config/>
+	<!-- 扫描注解配置的包 -->
+	<context:component-scan base-package="rugal">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<!-- 完成请求和注解POJO的映射 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
+	<!--配置一个viewResolver来处理返回的页面,配置前置和后置-->
+	<bean id="viewresolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/pages/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
 </beans>
