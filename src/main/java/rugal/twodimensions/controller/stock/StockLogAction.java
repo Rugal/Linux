@@ -18,7 +18,7 @@ import rugal.twodimensions.core.service.StockLogService;
  * @author Rugal Bernstein
  */
 @Controller
-public class ListStockLogAction {
+public class StockLogAction {
 
 	@Autowired
 	private StockLogService stockLogService;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import rugal.common.page.Pagination;
+import rugal.twodimensions.core.entity.Goods;
 import rugal.twodimensions.core.service.GoodsService;
 
 /**
@@ -18,7 +19,7 @@ import rugal.twodimensions.core.service.GoodsService;
  * @author Rugal Bernstein
  */
 @Controller
-public class ListGoodsAction {
+public class GoodsAction {
 
 	@Autowired
 	private GoodsService goodsService;
@@ -28,6 +29,23 @@ public class ListGoodsAction {
 		Pagination page = goodsService.getPage(pageNo, pageSize);
 		ModelAndView mav = new ModelAndView("stock/listGoods");
 		mav.getModelMap().put("page", page);
+		return mav;
+	}
+
+	@RequestMapping(value = "/stock/showGoods.do")
+	public ModelAndView showGoods(int gid) {
+		Goods g = goodsService.findById(gid);
+		ModelAndView mav = new ModelAndView("stock/showGoods");
+		mav.getModelMap().put("goods", g);
+		return mav;
+	}
+
+	//---------------------
+	@RequestMapping(value = "/stock/modifyGoods.do")
+	public ModelAndView modifyGoods(int gid) {
+		Goods g = goodsService.findById(gid);
+		ModelAndView mav = new ModelAndView("stock/showGoods");
+		mav.getModelMap().put("goods", g);
 		return mav;
 	}
 }

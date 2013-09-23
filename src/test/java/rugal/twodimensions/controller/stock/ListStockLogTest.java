@@ -5,9 +5,6 @@
 package rugal.twodimensions.controller.stock;
 
 import java.util.Iterator;
-import java.util.List;
-import org.htmlparser.lexer.Page;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +31,7 @@ public class ListStockLogTest {
 	@Autowired
 	public RequestMappingHandlerAdapter handlerAdapter;
 	@Autowired
-	private ListStockLogAction listStockLogAction;
+	private StockLogAction listStockLogAction;
 	private static MockHttpServletRequest request;
 	private static MockHttpServletResponse response;
 
