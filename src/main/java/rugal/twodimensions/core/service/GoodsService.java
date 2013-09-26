@@ -16,18 +16,20 @@ import rugal.twodimensions.core.entity.Operator;
  */
 public interface GoodsService {
 
-    Goods deleteById(Integer id);
+	Goods deleteById(Integer id);
 
-    Goods findById(Integer id);
+	Goods findById(Integer id);
 
-    Pagination getPage(int pageNo, int pageSize);
+	Pagination getPage(int pageNo, int pageSize);
 
 //    Goods save(Goods bean);
-    List<Goods> findByName(String name);
+	List<Goods> findByName(String name);
 
-    Goods sell(Goods bean, Customer customer, Operator operator, Integer quantity, Float price);
+	Goods sell(Goods bean, Customer customer, Operator operator, Integer quantity, Float price);
 
-    Goods stock(Goods bean, Operator operator, Integer num);
+	Goods stock(Goods bean, Operator operator, Integer num);
 
-    Goods updateSellPrice(Goods bean, float price);
+	Goods updateSellPrice(Goods bean, float price);
+
+	Goods updateGoods(Goods bean);
 }

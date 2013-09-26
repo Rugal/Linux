@@ -4,6 +4,7 @@
     Author     : rugal
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,23 +13,28 @@
 		<title>Two Dimensions</title>
 	</head>
 	<body>
+		<c:if test="${modify==1}">
+			<p align="center">修改商品信息成功!</p>
+		</c:if>
 		<form action="modifyGoods.do" method="post">
 			<table border="0"  align="center">
 				<caption>商品信息</caption>
 				<tr>
 					<th width="100" align="right">商品号</th>
-					<td width="300" align="left">${goods.gid}</td>
+					<td width="300" align="left">
+						<input type="text" readonly="true" name="goods.gid" value="${goods.gid}"/>
+					</td>
 				</tr>
 				<tr>
 					<th width="100" align="right">名称</th>
 					<td width="300" align="left">
-						<input type="text" value="${goods.name}"/>
+						<input type="text" name="goods.name" value="${goods.name}"/>
 					</td>
 				</tr>
 				<tr>
 					<th width="100" align="right">单位</th>
 					<td width="300" align="left">
-						<input type="text" value="${goods.unit}"/>
+						<input type="text" name="goods.unit" value="${goods.unit}"/>
 					</td>
 				</tr>
 				<tr>
@@ -38,7 +44,7 @@
 				<tr>
 					<th width="100" align="right">定价</th>
 					<td width="300" align="left">
-						<input type="text" value="${goods.sellPrice}"/>
+						<input type="text" name="goods.sellPrice" value="${goods.sellPrice}"/>
 					</td>
 				</tr>
 				<tr>
@@ -59,7 +65,6 @@
 						<input type="submit" value="提交"/>
 					</td>
 				</tr>
-				<input type="hidden" name="gid" value="${goods.gid}"/>
 			</table>
 		</form>
 		<p align="center">

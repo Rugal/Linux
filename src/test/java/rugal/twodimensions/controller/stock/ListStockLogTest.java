@@ -35,10 +35,6 @@ public class ListStockLogTest {
 	private static MockHttpServletRequest request;
 	private static MockHttpServletResponse response;
 
-	public void setHandlerAdapter(RequestMappingHandlerAdapter handlerAdapter) {
-		this.handlerAdapter = handlerAdapter;
-	}
-
 	@BeforeClass
 	public static void before() {
 		request = new MockHttpServletRequest();
@@ -59,7 +55,7 @@ public class ListStockLogTest {
 			parameterTypes[0] = int.class;
 			parameterTypes[1] = int.class;
 			parameterTypes[2] = boolean.class;
-			mv = handlerAdapter.handle(request, response, new HandlerMethod(listStockLogAction, "list", parameterTypes));
+			mv = handlerAdapter.handle(request, response, new HandlerMethod(listStockLogAction, "listStockLog", parameterTypes));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
