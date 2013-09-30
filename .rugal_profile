@@ -23,7 +23,7 @@ alias dstat="dstat -cdlmnpsy"
 alias slurm="slurm -i wlan0"
 alias t="translate"
 alias ps="ps -ef|grep"
-alias v="gvim"
+alias v="vim"
 alias V="v"
 alias matrix="cmatrix -sb"
 
