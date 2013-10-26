@@ -116,6 +116,7 @@ set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:< "set indent chars list
 set ic
 "set spell
 "set spelllang=en
+"set noignorecase
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 autocmd FileType c set omnifunc=ccomplete#Complete
 set ofu=syntaxcomplete#Complete
