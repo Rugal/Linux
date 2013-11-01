@@ -1,0 +1,20 @@
+sudo vmbuilder kvm ubuntu \
+    --dest=/home/rugal/VM/master \
+    --overwrite \
+    --mem=512 \
+    --cpus=1 \
+    --rootsize=10240 \
+    --swapsize=1024 \
+    --addpkg=openssh-server \
+    --addpkg=vim \
+    --addpkg=acpid \
+    --arch=amd64 \
+    --suite=precise \
+    --flavour virtual \
+    --components main,universe,restricted multiverse\
+    --hostname master.rugal.org \
+    --mirror=http://mirrors.163.com/ubuntu   \
+    --user rugal \
+    --pass 900811 \
+    --libvirt qemu:///system \
+    --bridge=br0 ;
