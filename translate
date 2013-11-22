@@ -8,6 +8,12 @@ if source missing, use auto'
 # adjust to taste
 DEFAULT_TARGET_LANG=zh
 
+if [ $# == 0  ]
+then
+    echo "$help"
+    exit
+fi
+
 if [[ $1 = -h || $1 = --help ]]
 then
 echo "$help"
