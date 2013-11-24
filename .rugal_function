@@ -37,7 +37,7 @@ function run_headless_eclimd()
 }
 function run_graphical_eclimd()
 {
-    ECLIPSE_HOME="/usr/local/eclipse"
+    ECLIPSE_HOME="/opt/eclipse"
     $ECLIPSE_HOME/eclimd  1>/dev/null 2>&1     &
 }
 function install_vim()
@@ -56,13 +56,15 @@ function install_vim()
 }
 function install_powerline_font()
 {
+    FONTS="~/.fonts"
+    FONTCONFIG="~/.config/fontconfig/conf.d"
     cd ~
-    mkdir .fonts .fonts.conf.d
+    mkdir  $FONTS  $FONTCONFIG    -p
     wget https://github.com/Lokaltog/powerline/raw/develop/font/PowerlineSymbols.otf \
-    -O ~/.fonts/PowerlineSymbols.otf
+    -O $FONTS/PowerlineSymbols.otf
     fc-cache -vf ~/.fonts
     wget https://github.com/Lokaltog/powerline/raw/develop/font/10-powerline-symbols.conf \
-    -O ~/.fonts.conf.d/10-powerline-symbols.conf
+    -O $FONTCONFIG/10-powerline-symbols.conf
 }
 function init_eclim_classpath()
 {

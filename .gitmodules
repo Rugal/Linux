@@ -1,3 +1,0 @@
-[submodule ".local/share/gnome-shell"]
-	path = .local/share/gnome-shell
-	url = https://github.com/Rugal/gnome-extensions.git

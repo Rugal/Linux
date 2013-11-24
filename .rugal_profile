@@ -27,7 +27,9 @@ alias v="vim"
 alias V="v"
 alias g="gvim"
 alias matrix="cmatrix -sb"
-alias jekyll="jekyll serve -w  1>/var/log/jekyll/jekyll.log 2>&1  &"
+alias lock-up="gnome-screensaver-command --lock"
+alias jekyll="jekyll serve -w -s ~/workspace/rugal.github.com  -d ~/workspace/rugal.github.com/_site  1>/var/log/jekyll/jekyll.log 2>&1  &"
+alias maven="mvn tomcat:undeploy ; sudo service tomcat7 restart ;mvn clean tomcat:deploy"
 
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
@@ -35,6 +37,5 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 #curl -sL get.ascii.io | bash
 #wget http://www.geeknote.me/dist/geeknote_latest.deb
-#
 #
 source ~/.rugal_function
