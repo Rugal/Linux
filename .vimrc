@@ -68,7 +68,7 @@ if has("autocmd")
   au!
 
   " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+  autocmd FileType text setlocal textwidth=100
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -106,7 +106,7 @@ set autoindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set textwidth=79
+set textwidth=0
 set softtabstop=4
 set autoindent
 set ff=unix
@@ -117,8 +117,8 @@ set ic
 "set spell
 "set spelllang=en
 "set noignorecase
-autocmd FileType python set omnifunc=pythoncomplete#Complete
-autocmd FileType c set omnifunc=ccomplete#Complete
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
+"autocmd FileType c set omnifunc=ccomplete#Complete
 set ofu=syntaxcomplete#Complete
 if !has("gui_running")
     nmap mx :!cmatrix<cr>
@@ -141,7 +141,7 @@ Bundle 'mru.vim'
 Bundle 'python_fold'
 Bundle 'JavaDecompiler.vim'
 Bundle 'indentjava.vim'
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 Bundle 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
@@ -223,6 +223,7 @@ let g:pydiction_location='~/.vim/bundle/Pydiction/complete-dict'
 
 " powerline configure
 set laststatus=2
+set noshowmode "hide default mode text
 
 " mru.vim configure
 "let MRU_File='~/.mru_files'
@@ -236,3 +237,6 @@ nmap mru  :MRU<CR>
 "eclim configure
 "let g:EclimLogLevel=10
 let g:EclimCompletionMethod='omnifunc'
+
+" YouCompleteMe configuration
+"let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
