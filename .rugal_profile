@@ -28,7 +28,7 @@ alias V="v"
 alias g="gvim"
 alias matrix="cmatrix -sb"
 alias lock-up="gnome-screensaver-command --lock"
-alias jekyll="jekyll serve -w -s ~/workspace/rugal.github.com  -d ~/workspace/rugal.github.com/_site  1>/var/log/jekyll/jekyll.log 2>&1  &"
+alias jekyll="jekyll serve -w -s ~/Workspace/Study/rugal.github.com  -d ~/Workspace/Study/rugal.github.com/_site --limit_posts 6  1>/var/log/jekyll.log 2>&1  &"
 alias maven="mvn tomcat:undeploy ; sudo service tomcat7 restart ;mvn clean tomcat:deploy"
 
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
