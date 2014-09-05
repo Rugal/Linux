@@ -30,10 +30,51 @@ fi
 
 word=$1
 
-DATA=$(curl -s -A'Chrome/36.0.1985.143'   "https://translate.google.ca/translate_a/single?client=t&sl=${sl}&tl=${tl}&hl=en&dt=bd&dt=ex&dt=ld&dt=md&dt=qc&dt=rw&dt=rm&dt=ss&dt=t&dt=at&dt=sw&ie=UTF-8&oe=UTF-8&oc=9&prev=btn&ssel=0&tsel=0&q=${word}")
+ODATA=$(curl -s -A'Chrome/36.0.1985.143'   "https://translate.google.ca/translate_a/single?client=t&sl=${sl}&tl=${tl}&hl=en&dt=bd&dt=ex&dt=ld&dt=md&dt=qc&dt=rw&dt=rm&dt=ss&dt=t&dt=at&dt=sw&ie=UTF-8&oe=UTF-8&oc=9&prev=btn&ssel=0&tsel=0&q=${word}")
 
-
-DATA=${DATA:4}
+DATA=${ODATA:4}
 end=$(echo | awk -v "DATA=$DATA" -v "PATTERN=\"" '{print index(DATA,PATTERN)}'  2>/dev/null)
 ans=${DATA:0:end-1}
 echo $ans
+
+
+if [ $sl  ==  $DEFAULT_SOURCE_LANG ]
+then
+
+    DATA=${ODATA:1}
+
+    #echo $DATA
+    count=1
+    #there are 6 pairs of square parenthese here, find them, consume them
+    while [  $count -lt 7 ]
+    do
+        #echo $count
+        start=$(echo | awk -v "DATA=$DATA" -v "PATTERN=[" '{print index(DATA,PATTERN)}'  2>/dev/null)
+        DATA=${DATA:start}
+        parenthese=1
+        #match and consume parenthese inside
+        while [ $parenthese -ne 0  ]
+        do
+            start=$(echo | awk -v "DATA=$DATA" -v "PATTERN=[" '{print index(DATA,PATTERN)}'  2>/dev/null)
+            end=$(echo | awk -v "DATA=$DATA" -v "PATTERN=]" '{print index(DATA,PATTERN)}'  2>/dev/null)
+            if [ $start -lt $end  ]
+            then
+                let parenthese++
+                DATA=${DATA:start}
+                #echo "L "$start
+            else
+                let parenthese--
+                DATA=${DATA:end}
+                #echo "R "$end
+            fi
+        done
+        let count++
+    done
+    start=$(echo | awk -v "DATA=$DATA" -v "PATTERN=[[" '{print index(DATA,PATTERN)}'  2>/dev/null)
+    DATA=${DATA:start+2}
+    start=$(echo | awk -v "DATA=$DATA" -v "PATTERN=[[" '{print index(DATA,PATTERN)}'  2>/dev/null)
+    DATA=${DATA:start+2}
+    #echo $DATA
+    end=$(echo | awk -v "DATA=$DATA" -v "PATTERN=\"" '{print index(DATA,PATTERN)}'  2>/dev/null)
+    echo ${DATA:0:end-1}
+fi
