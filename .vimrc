@@ -108,6 +108,7 @@ set shiftwidth=4
 set expandtab
 set textwidth=0
 set softtabstop=4
+"set noexpandtab
 set autoindent
 set ff=unix
 set foldmethod=indent
@@ -135,15 +136,11 @@ Bundle 'minibufexpl.vim'
 Bundle 'SuperTab'
 Bundle 'The-NERD-tree'
 Bundle 'The-NERD-Commenter'
-Bundle 'indentpython.vim'
-Bundle 'Pydiction'
 Bundle 'mru.vim'
-Bundle 'python_fold'
-Bundle 'JavaDecompiler.vim'
-Bundle 'indentjava.vim'
+"Bundle 'python_fold'
+"Bundle 'JavaDecompiler.vim'
 "Bundle 'davidhalter/jedi-vim'
 Bundle 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
-Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Townk/vim-autoclose'
 Bundle 'Yggdroot/indentLine'
