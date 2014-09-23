@@ -89,7 +89,7 @@ function do_init_eclim_classpath()
 
 function rugalkill()
 {
-    if [ $# == 0 ]
+    if [ $# -eq 0 ]
     then
         echo "Usage : rugalkill name"
         exit

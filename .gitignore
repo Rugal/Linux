@@ -1,0 +1,12 @@
+*
+!.ssh
+!.vim
+!.Xdefaults
+!.gvimrc
+!.rugal_function
+!.rugal_profile
+!.tmux.conf
+.vimrc
+!README.md
+!translate
+!.gitignore
