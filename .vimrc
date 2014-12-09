@@ -145,8 +145,10 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'Townk/vim-autoclose'
 Bundle 'Yggdroot/indentLine'
 Bundle 'vimomni'
-Bundle 'altercation/vim-colors-solarized'
+"Bundle 'altercation/vim-colors-solarized'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'tpope/vim-fireplace'
+Bundle 'tpope/vim-leiningen'
 
 " wildmenu configure
 set wildmenu

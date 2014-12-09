@@ -28,13 +28,16 @@ alias V="v"
 alias g="gvim"
 alias matrix="cmatrix -sb"
 alias lock-up="gnome-screensaver-command --lock"
-alias jekyll="jekyll serve -w -s ~/Workspace/Study/rugal.github.com  -d ~/Workspace/Study/rugal.github.com/_site --limit_posts 6  1>/var/log/jekyll.log 2>&1  &"
+alias jekyll="jekyll serve -w -s ~/Workspaces/rugal.github.com  -d ~/Workspace/rugal.github.com/_site --limit_posts 10  1>/var/log/jekyll.log 2>&1  &"
 alias maven="mvn tomcat:undeploy ; sudo service tomcat7 restart ;mvn clean tomcat:deploy"
 
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+POWERLINE=~/.vim/bundle/powerline/scripts
+export PATH=$PATH:$POWERLINE
+export POWERLINE_CONFIG_COMMAND=$POWERLINE/powerline-config
 #curl -sL get.ascii.io | bash
 #wget http://www.geeknote.me/dist/geeknote_latest.deb
 #
