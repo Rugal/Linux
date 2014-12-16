@@ -125,6 +125,13 @@ if !has("gui_running")
     nmap mx :!cmatrix<cr>
 endif
 
+"mapping Dvorak keys
+noremap s l
+noremap n k
+noremap t j
+noremap h h
+
+
 " ---------------------------------vundle configure
 "  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
 set rtp+=~/.vim/bundle/vundle/
