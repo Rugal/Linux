@@ -125,37 +125,31 @@ if !has("gui_running")
     nmap mx :!cmatrix<cr>
 endif
 
-"mapping Dvorak keys
-noremap s l
-noremap n k
-noremap t j
-noremap h h
-
 
 " ---------------------------------vundle configure
-"  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'taglist.vim'
-Bundle 'winmanager'
-Bundle 'minibufexpl.vim'
-Bundle 'SuperTab'
-Bundle 'The-NERD-tree'
-Bundle 'The-NERD-Commenter'
-Bundle 'mru.vim'
-"Bundle 'python_fold'
-"Bundle 'JavaDecompiler.vim'
-"Bundle 'davidhalter/jedi-vim'
-Bundle 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'Townk/vim-autoclose'
-Bundle 'Yggdroot/indentLine'
-Bundle 'vimomni'
-"Bundle 'altercation/vim-colors-solarized'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'tpope/vim-fireplace'
-Bundle 'tpope/vim-leiningen'
+"  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/vundle'
+Plugin 'taglist.vim'
+Plugin 'winmanager'
+Plugin 'minibufexpl.vim'
+Plugin 'SuperTab'
+Plugin 'The-NERD-tree'
+Plugin 'The-NERD-Commenter'
+Plugin 'mru.vim'
+"Plugin 'JavaDecompiler.vim'
+"Plugin 'davidhalter/jedi-vim'
+Plugin 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'Townk/vim-autoclose'
+Plugin 'Yggdroot/indentLine'
+Plugin 'vimomni'
+"Plugin 'altercation/vim-colors-solarized'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-leiningen'
+call vundle#end() 
 
 " wildmenu configure
 set wildmenu
