@@ -164,7 +164,7 @@ set wildignore+=*.luac                           " Lua 字节码
 set wildignore+=*.DS_Store                       " OSX 糟糕物
 
 " Ctags configure
-map <C-F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " taglist.vim configure
 let Tlist_Ctags_Cmd='/usr/bin/ctags'
