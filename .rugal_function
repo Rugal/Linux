@@ -33,7 +33,7 @@ function run_headless_eclimd()
 {
     ECLIPSE_HOME="/usr/local/eclipse"
     Xvfb :1 -screen 0 1024x768x24 &
-    DISPLAY=:1 $ECLIPSE_HOME/eclimd start
+    DISPLAY=:1 $ECLIPSE_HOME/eclimd -b
 }
 function run_graphical_eclimd()
 {
@@ -85,14 +85,4 @@ function do_init_eclim_classpath()
 {
     mvn eclipse:eclipse
     vim +MvnRepo +ProjectImport . +qa
-}
-
-function rugalkill()
-{
-    if [ $# -eq 0 ]
-    then
-        echo "Usage : rugalkill name"
-        exit
-    fi
-    kill `ps -ef|grep $1|grep -v grep|awk '{print $2}'`
 }
