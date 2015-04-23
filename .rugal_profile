@@ -33,6 +33,9 @@ git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Crese
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
+bind '"\e[1;5A": reverse-search-history'
+bind '"\e[1;5B": forward-search-history'
+
 POWERLINE=~/.vim/bundle/powerline/scripts
 export PATH=$PATH:$POWERLINE
 export POWERLINE_CONFIG_COMMAND=$POWERLINE/powerline-config
