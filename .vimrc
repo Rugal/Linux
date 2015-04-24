@@ -194,11 +194,13 @@ nmap <F6> :cn<cr>
 nmap <F7> :cp<cr>
 
 " minibufexpl.vim configure
-let g:miniBufExplMapWindowNavVim = 1   
-let g:miniBufExplMapWindowNavArrows = 1   
-let g:miniBufExplMapCTabSwitchBufs = 1   
-let g:miniBufExplModSelTarget = 1  
-let g:miniBufExplMoreThanOne=0  
+" minibufexpl.vim configure
+noremap <C-J>     <C-W>j
+noremap <C-K>     <C-W>k
+noremap <C-H>     <C-W>h
+noremap <C-L>     <C-W>l
+noremap <C-Tab>   :MBEbn<CR>
+noremap <C-S-Left>    :MBEbp<CR>
 
 " omnicomplete configure 
 set completeopt=menu,longest
