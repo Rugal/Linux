@@ -128,28 +128,31 @@ endif
 
 " ---------------------------------vundle configure
 "  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.vim/bundle/vundle/
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'taglist.vim'
 Plugin 'winmanager'
-Plugin 'minibufexpl.vim'
+"Plugin 'minibufexpl.vim'
+Plugin 'fholgado/minibufexpl.vim'
 Plugin 'SuperTab'
 Plugin 'The-NERD-tree'
 Plugin 'The-NERD-Commenter'
 Plugin 'mru.vim'
-"Plugin 'JavaDecompiler.vim'
+"Plugin 'eclim'
+Plugin 'JavaDecompiler.vim'
 "Plugin 'davidhalter/jedi-vim'
 Plugin 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Townk/vim-autoclose'
 Plugin 'Yggdroot/indentLine'
 Plugin 'vimomni'
-"Plugin 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-leiningen'
-call vundle#end() 
+"Plugin 'tpope/vim-fireplace'
+"Plugin 'tpope/vim-leiningen'
+call vundle#end()
+
 
 " wildmenu configure
 set wildmenu
