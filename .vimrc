@@ -133,7 +133,6 @@ call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'taglist.vim'
 Plugin 'winmanager'
-"Plugin 'minibufexpl.vim'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'SuperTab'
 Plugin 'The-NERD-tree'
