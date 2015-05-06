@@ -123,7 +123,7 @@ endif
 
 " ---------------------------------vundle configure
 "  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 Plugin 'gmarik/vundle'
 Plugin 'taglist.vim'
