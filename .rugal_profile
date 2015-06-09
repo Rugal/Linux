@@ -27,7 +27,7 @@ alias v="vim"
 alias V="v"
 alias g="gvim"
 alias matrix="cmatrix -sb"
-alias jekyll="jekyll --watch --host 0.0.0.0 --port 4000 -w -s ~/Workspaces/rugal.github.com -d ~/Workspaces/rugal.github.com/_site --limit_posts 10 > /var/log/jekyll.log 2>&1 &"
+alias jekyll="jekyll server --watch --host 0.0.0.0 --port 4000 -w -s ~/Workspaces/rugal.github.com -d ~/Workspaces/rugal.github.com/_site --limit_posts 10 > /var/log/jekyll.log 2>&1 &"
 
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --"
 
