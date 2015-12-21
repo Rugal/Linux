@@ -144,7 +144,7 @@ Plugin 'vimomni'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-leiningen'
+Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-dispatch'
 call vundle#end()
 
