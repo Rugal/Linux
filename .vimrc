@@ -133,9 +133,7 @@ Plugin 'SuperTab'
 Plugin 'The-NERD-tree'
 Plugin 'The-NERD-Commenter'
 Plugin 'mru.vim'
-"Plugin 'eclim'
 Plugin 'JavaDecompiler.vim'
-"Plugin 'davidhalter/jedi-vim'
 Plugin 'Lokaltog/powerline',{'rtp':'powerline/bindings/vim'}
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'Townk/vim-autoclose'
@@ -146,6 +144,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-dispatch'
+Plugin 'vim-scripts/VimClojure'
 call vundle#end()
 
 
@@ -233,10 +232,8 @@ let MRU_auto_Close=1
 let MRU_Use_Current_Window=0
 nmap mru  :MRU<CR>
 
-
-"eclim configure
-"let g:EclimLogLevel=10
-let g:EclimCompletionMethod='omnifunc'
-
 " YouCompleteMe configuration
 "let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/cpp/ycm/.ycm_extra_conf.py'
+
+" VimClojure configuration
+let g:vimclojure#ParenRainbow=10
