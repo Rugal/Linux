@@ -37,6 +37,7 @@ bind '"\e[1;5A": reverse-search-history'
 bind '"\e[1;5B": forward-search-history'
 
 POWERLINE=~/.vim/bundle/powerline/scripts
+export TERM=xterm-256color
 export PATH=$PATH:$POWERLINE
 export POWERLINE_CONFIG_COMMAND=$POWERLINE/powerline-config
 #curl -sL get.ascii.io | bash
