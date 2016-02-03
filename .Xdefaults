@@ -1,3 +1,4 @@
 xterm*scroolBar: On
 xterm*Font: Monaco
 xterm*size: 11
+xterm*termName: xterm-256color
