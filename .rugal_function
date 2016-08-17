@@ -1,7 +1,13 @@
 #!/bin/bash
-function ffi()
-{
-    grep -D skip -nRe "$1" .
+ffi () 
+{ 
+    name=$1;
+    path=".";
+    if [[ $# -eq 2 ]]; then
+        name=$2;
+        path=$1;
+    fi;
+    grep --color=auto -D skip -nRe $name $path
 }
 
 function ff() 
