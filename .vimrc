@@ -145,6 +145,7 @@ Plugin 'tpope/vim-fireplace'
 Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-dispatch'
 Plugin 'vim-scripts/VimClojure'
+Plugin 'bhurlow/vim-parinfer'
 call vundle#end()
 
 
