@@ -146,6 +146,7 @@ Plugin 'tpope/vim-salve'
 Plugin 'tpope/vim-dispatch'
 Plugin 'vim-scripts/VimClojure'
 Plugin 'bhurlow/vim-parinfer'
+Plugin 'ShowTrailingWhitespace'
 call vundle#end()
 
 
@@ -238,3 +239,6 @@ nmap mru  :MRU<CR>
 
 " VimClojure configuration
 let g:vimclojure#ParenRainbow=10
+
+"strip all trailing whitespace in the current file
+nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
