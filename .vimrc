@@ -148,6 +148,8 @@ Plugin 'vim-scripts/VimClojure'
 Plugin 'bhurlow/vim-parinfer'
 Plugin 'ShowTrailingWhitespace'
 Plugin 'mhinz/vim-startify'
+Plugin 'ShowTrailingWhitespace'
+Plugin 'mhinz/vim-startify'
 Plugin 'kien/rainbow_parentheses.vim'
 call vundle#end()
 
