@@ -184,15 +184,15 @@ call vundle#end()
 
 " wildmenu configure
 set wildmenu
-set wildmode=list:longest          " 补全时显示样式为多行
-set wildignore+=.hg,.git,.svn                    " 版本控制
-set wildignore+=*.pyc                            " Python 字节码
-set wildignore+=*.sw?                            " Vim 交换文件
-set wildignore+=*.aux,*.out,*.toc                " LaTeX 文件
-set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " 二进制图像
-set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " 已编译的对象文件
-set wildignore+=*.luac                           " Lua 字节码
-set wildignore+=*.DS_Store                       " OSX 糟糕物
+set wildmode=list:longest          " Completing multiple-lines
+set wildignore+=.hg,.git,.svn                    " SVC
+set wildignore+=*.pyc                            " Python bytecode
+set wildignore+=*.sw?                            " Vim swap file
+set wildignore+=*.aux,*.out,*.toc                " LaTeX file
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " Image
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " Compiled file
+set wildignore+=*.luac                           " Lua bytecode
+set wildignore+=*.DS_Store                       " OSX
 
 " Ctags configure
 map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
