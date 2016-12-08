@@ -178,6 +178,7 @@ Plugin 'mhinz/vim-startify'
 Plugin 'ShowTrailingWhitespace'
 Plugin 'mhinz/vim-startify'
 Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 
 
