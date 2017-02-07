@@ -274,3 +274,7 @@ let g:vimclojure#ParenRainbow=10
 
 "strip all trailing whitespace in the current file
 nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
+
+" translation
+" sudo pip install ici
+nmap <Leader>y :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
