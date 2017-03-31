@@ -1,6 +1,6 @@
 *
 !.ssh
-!.fonts
+!.fonts/
 !.vim
 !.Xdefaults
 !.gvimrc
