@@ -1,5 +1,6 @@
 *
 !.ssh
+!.fonts
 !.vim
 !.Xdefaults
 !.gvimrc
@@ -8,5 +9,3 @@
 !.tmux.conf
 !.vimrc
 !README.md
-!translate
-!.gitignore
