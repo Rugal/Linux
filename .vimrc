@@ -185,6 +185,7 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
 call vundle#end()
 
 
@@ -201,7 +202,7 @@ set wildignore+=*.luac                           " Lua bytecode
 set wildignore+=*.DS_Store                       " OSX
 
 " Ctags configure
-map <F12> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --exclude=.git --exclude=log --exclude=node_modules .<CR>
 
 " taglist.vim configure
 let Tlist_Ctags_Cmd='/usr/bin/ctags'
@@ -284,3 +285,24 @@ nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 " translation
 " sudo pip install ici
 nmap <Leader>y :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
+
+" Syntastic
+let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
+let g:syntastic_javascript_checkers=['eslint']
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_error_symbol = '❌'
+let g:syntastic_style_error_symbol = '⁉️ '
+let g:syntastic_warning_symbol = '⚠️ '
+let g:syntastic_style_warning_symbol = '💩'
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
