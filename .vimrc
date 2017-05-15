@@ -91,6 +91,7 @@ if has("autocmd")
 
   " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=100
+  autocmd BufNewFile,BufRead *.ts* setlocal filetype=typescript
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -186,6 +187,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'mbbill/undotree'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
+Plugin 'leafgarland/typescript-vim'
 call vundle#end()
 
 
@@ -287,17 +289,19 @@ nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
 nmap <Leader>y :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
 
 " Syntastic
-let g:syntastic_javascript_eslint_exe='$(npm bin)/eslint'
 let g:syntastic_javascript_checkers=['eslint']
+let g:syntastic_javascript_eslint_exe="$(npm bin)/eslint"
+let g:syntastic_typescript_checkers = ['tslint']
+let g:syntastic_typescript_tslint_exe="$(npm bin)/tslint"
+let g:syntastic_typescript_tslint_args = "--config ./tslint.json --project tsconfig.json"
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_loc_list_height = 5
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️ '
 let g:syntastic_warning_symbol = '⚠️ '
