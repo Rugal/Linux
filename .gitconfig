@@ -1,0 +1,18 @@
+[alias]
+        lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+[user]
+        name = Rugal Bernstein
+        email = rugal.bernstein.0@gmail.com
+[filter "lfs"]
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
+[help]
+        autocorrect = 1
+[tig]
+    line-graphics = utf-8
+    commit-title-graph = v2
+    commit-title-refs = yes
+    date-display = default
+    author-display = full
