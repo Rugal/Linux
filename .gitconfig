@@ -12,7 +12,11 @@
         autocorrect = 1
 [tig]
     line-graphics = utf-8
-    commit-title-graph = v2
-    commit-title-refs = yes
-    date-display = default
-    author-display = full
+    vertical-split = true
+    show-changes = true
+    refresh-mode = auto
+    main-view-line-number = false
+    main-view-author = full
+    main-view-id = true
+    main-view-commit-title-refs = true
+    main-view-date = relative
