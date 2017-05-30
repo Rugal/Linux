@@ -138,6 +138,7 @@ set foldmethod=indent
 set list
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:< "set indent chars list
 set ic
+nnoremap ; :
 "set spell
 "set spelllang=en
 "set noignorecase
