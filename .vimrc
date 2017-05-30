@@ -341,3 +341,17 @@ function! s:ZoomToggle() abort
 endfunction
 command! ZoomToggle call s:ZoomToggle()
 nnoremap <silent> <Leader>z :ZoomToggle<CR>
+
+" Move screen as search pattern in center
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" Keep selecting after indent
+vnoremap < <gv
+vnoremap > >gv
+
+" w!! to sudo & write a file
+cmap w!! w !sudo tee >/dev/null %
