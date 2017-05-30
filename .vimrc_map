@@ -1,0 +1,64 @@
+" Ctags configure
+map <F11> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --exclude=.git --exclude=log --exclude=node_modules .<CR>
+
+" quickfix configure
+nmap <F6> :cn<cr>
+nmap <F7> :cp<cr>
+
+"strip all trailing whitespace in the current file
+nnoremap <leader>w :%s/\s\+$//<cr>:let @/=''<CR>
+
+" translation
+" sudo pip install ici
+nmap <Leader>y :!echo --==<C-R><C-w>==-- ;ici <C-R><C-W><CR>
+
+" Keep screen at center
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap <silent> * *zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+
+" Keep selection after indent
+vnoremap < <gv
+vnoremap > >gv
+
+set relativenumber number
+au FocusLost * :set norelativenumber number
+au FocusGained * :set relativenumber
+autocmd InsertEnter * :set norelativenumber number
+autocmd InsertLeave * :set relativenumber
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set norelativenumber number
+  else
+    set relativenumber
+  endif
+endfunc
+nnoremap <C-n> :call NumberToggle()<cr>
+
+" Zooming toggle
+function! s:ZoomToggle() abort
+    if exists('t:zoomed') && t:zoomed
+        execute t:zoom_winrestcmd
+        let t:zoomed = 0
+    else
+        let t:zoom_winrestcmd = winrestcmd()
+        resize
+        vertical resize
+        let t:zoomed = 1
+    endif
+endfunction
+command! ZoomToggle call s:ZoomToggle()
+nnoremap <silent> <Leader>z :ZoomToggle<CR>
+
+" w!! to sudo & write a file
+cmap w!! w !sudo tee >/dev/null %
+
+" Map ; to :
+nnoremap ; :
+
+" cmatrix
+if !has("gui_running")
+    nmap mx :!cmatrix<cr>
+endif
