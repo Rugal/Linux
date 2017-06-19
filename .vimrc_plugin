@@ -56,10 +56,20 @@ let Tlist_GainFocus_On_ToggleOpen=0
 let Tlist_Use_Horiz_Window=0
 :command -range=% T :TlistToggle
 
-" winmanager configure
-"let g:winManagerWindowLayout='FileExplorer|TagList'
-nmap wm :WMToggle<cr>
-nmap <F12> wm
+" winmanager definitions
+let g:winManagerWindowLayout="NERDTree|TagList"
+map <silent> <F12> :WMToggle<cr>
+let g:winManagerWidth=40
+let g:AutoOpenWinManager=1
+
+" The-NERD-Tree configure
+let g:NERDTree_title="[NERDTree]"
+function! NERDTree_Start()
+    exec 'NERDTree'
+endfunction
+function! NERDTree_IsValid()
+    return 1
+endfunction
 
 " minibufexpl.vim configure
 noremap <C-J>     <C-W>j
@@ -82,14 +92,6 @@ set encoding=utf-8
 "set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
-let g:winManagerWindowLayout="NERDTree|TagList"
-function! NERDTree_Start()
-    exec 'NERDTree'
-endfunction
-function! NERDTree_IsValid()
-    return 1
-endfunction
-
 
 " mru.vim configure
 "let MRU_File='~/.mru_files'
