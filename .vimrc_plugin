@@ -37,6 +37,21 @@ Plugin 'mtscout6/syntastic-local-eslint.vim'
 "Plugin 'posva/vim-vue'
 call vundle#end()
 
+" winmanager definitions
+let g:winManagerWindowLayout="NERDTree|TagList"
+map <silent> <F12> :WMToggle<cr>
+let g:winManagerWidth=40
+let g:AutoOpenWinManager=1
+
+" The-NERD-Tree configure
+let g:NERDTree_title="[NERDTree]"
+function! NERDTree_Start()
+    exec 'NERDTree'
+endfunction
+function! NERDTree_IsValid()
+    return 1
+endfunction
+
 " taglist.vim configure
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 let Tlist_Show_One_File=1
@@ -55,21 +70,6 @@ let Tlist_GainFocus_On_ToggleOpen=0
 let Tlist_Use_Horiz_Window=0
 :command -range=% T :TlistToggle
 
-" winmanager definitions
-let g:winManagerWindowLayout="NERDTree|TagList"
-map <silent> <F12> :WMToggle<cr>
-let g:winManagerWidth=40
-let g:AutoOpenWinManager=1
-
-" The-NERD-Tree configure
-let g:NERDTree_title="[NERDTree]"
-function! NERDTree_Start()
-    exec 'NERDTree'
-endfunction
-function! NERDTree_IsValid()
-    return 1
-endfunction
-
 " minibufexpl.vim configure
 noremap <C-J>     <C-W>j
 noremap <C-K>     <C-W>k
@@ -79,9 +79,6 @@ noremap <C-L>     <C-W>l
 " SuperTab configure
 let g:SuperTabRetainCompletionType=2
 let g:SuperTabDefaultCompletionType="<C-x><C-o>"
-
-" The-NERD-Tree configure
-let g:NERDTree_title="[NERDTree]"
 
 " powerline configure
 set laststatus=2
