@@ -35,6 +35,7 @@ Plugin 'ryanoasis/vim-devicons'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
 "Plugin 'posva/vim-vue'
+Plugin 'dbext.vim'
 call vundle#end()
 
 " winmanager definitions
