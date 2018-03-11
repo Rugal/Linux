@@ -39,6 +39,8 @@ Plugin 'mtscout6/syntastic-local-eslint.vim'
 "Plugin 'posva/vim-vue'
 Plugin 'dbext.vim'
 Plugin 'edkolev/tmuxline.vim'
+Plugin 'simeji/winresizer'
+Plugin 'Chiel92/vim-autoformat'
 call vundle#end()
 
 " winmanager definitions
