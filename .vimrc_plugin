@@ -3,7 +3,7 @@
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 Plugin 'gmarik/vundle'
-Plugin 'taglist.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'winmanager'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'SuperTab'
@@ -44,7 +44,7 @@ Plugin 'Chiel92/vim-autoformat'
 call vundle#end()
 
 " winmanager definitions
-let g:winManagerWindowLayout="NERDTree|TagList"
+let g:winManagerWindowLayout="NERDTree|Tagbar"
 map <silent> <F12> :WMToggle<cr>
 let g:winManagerWidth=40
 let g:AutoOpenWinManager=1
@@ -57,6 +57,17 @@ endfunction
 function! NERDTree_IsValid()
     return 1
 endfunction
+
+let g:Tagbar_title = "[Tagbar]"
+function! Tagbar_Start()
+    exec 'q'
+    exe 'TagbarOpen'
+endfunction
+function! Tagbar_IsValid()
+    return 1
+endfunction
+let g:tagbar_vertical = 30
+
 
 " taglist.vim configure
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
