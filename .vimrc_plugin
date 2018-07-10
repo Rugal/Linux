@@ -36,11 +36,11 @@ Plugin 'mbbill/undotree'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'mtscout6/syntastic-local-eslint.vim'
-"Plugin 'posva/vim-vue'
 Plugin 'dbext.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'simeji/winresizer'
 Plugin 'Chiel92/vim-autoformat'
+Plugin 'skywind3000/vim-keysound'
 call vundle#end()
 
 " winmanager definitions
@@ -140,3 +140,11 @@ highlight link SyntasticErrorSign SignColumn
 highlight link SyntasticWarningSign SignColumn
 highlight link SyntasticStyleErrorSign SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
+
+" Keysound
+" brew install sdl2 && pip3 install pysdl2
+" Mixer https://www.libsdl.org/projects/SDL_mixer/
+let g:keysound_enable = 1
+let g:keysound_theme = 'default'
+let g:keysound_py_version = 3
+let g:keysound_volume = 500
