@@ -151,3 +151,6 @@ let g:keysound_volume = 500
 
 " Color Scheme
 colorscheme solarized
+
+"Eclim
+let g:EclimCompletionMethod = 'omnifunc'
