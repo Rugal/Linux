@@ -62,3 +62,8 @@ nnoremap ; :
 if !has("gui_running")
     nmap mx :!cmatrix<cr>
 endif
+
+" Eclim
+nnoremap <silent> <buffer> <leader>i :JavaImport<cr>
+nnoremap <silent> <buffer> <cr> :JavaSearchContext<cr>
+nnoremap <silent> <buffer> <leader>d :JavaDocSearch -x declarations<cr>
