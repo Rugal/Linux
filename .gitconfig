@@ -6,16 +6,22 @@
     s = status
     gc = -c gc.reflogExpire=0 -c gc.reflogExpireUnreachable=0 -c gc.rerereresolved=0 -c gc.rerereunresolved=0 -c gc.pruneExpire=now gc
 
+[core]
+    excludesfile = ~/.gitignore_global
+
 [user]
-        name = Rugal Bernstein
-        email = rugal.bernstein.0@gmail.com
+    name = Rugal Bernstein
+    email = rugal.bernstein.0@gmail.com
+
 [filter "lfs"]
-        clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
-        process = git-lfs filter-process
-        required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+
 [help]
-        autocorrect = 1
+    autocorrect = 1
+
 [tig]
     line-graphics = utf-8
     vertical-split = true
@@ -26,3 +32,9 @@
     main-view-id = true
     main-view-commit-title-refs = true
     main-view-date = relative
+
+[gpg]
+    program = gpg
+
+[commit]
+    gpgsign = true
