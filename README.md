@@ -25,7 +25,7 @@ name | quantity | note
 ## 高中
 name | quantity | note
 ---|--- | ---
-卢旭峰 | 1 | 伴郎
+卢旭峰 | 1 | 伴郎, 18657272250
 吴国伟|2|
 
 ## 初中
