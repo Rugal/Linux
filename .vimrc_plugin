@@ -41,6 +41,7 @@ Plugin 'edkolev/tmuxline.vim'
 Plugin 'simeji/winresizer'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'skywind3000/vim-keysound'
+Plugin 'highlight.vim'
 "Plugin 'eclim'
 call vundle#end()
 
