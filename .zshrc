@@ -92,9 +92,9 @@ source ~/.rugal_alias
 
 local ret_status="%(?:😀:🤯 )"
 PROMPT='
-$(git_prompt_info)
+%{$fg[green]%}%n%{$reset_color%} @ %B%~%b $(git_prompt_info)
 ${ret_status} ➜  '
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}%n%{$reset_color%} @ %B%~%b %{$fg[magenta]%}\uE0A0 "
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[magenta]%}\uE0A0 "
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}!"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"

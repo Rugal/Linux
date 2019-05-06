@@ -10,7 +10,7 @@
 
 alias c="clear"
 alias ll="ls --color=auto --time=ctime --sort=time  --time-style=iso -lFhp"
-alias l="ls --color=auto -p"
+alias l="ls -p"
 alias cl="clear;ll;pwd"
 alias lc=cl
 alias df="df -h"
