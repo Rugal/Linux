@@ -144,7 +144,7 @@ highlight link SyntasticStyleWarningSign SignColumn
 
 " Keysound
 " brew install sdl2 && pip3 install pysdl2
-" Mixer https://www.libsdl.org/projects/SDL_mixer/
+" compile & install the Mixer https://www.libsdl.org/projects/SDL_mixer/
 let g:keysound_enable = 1
 let g:keysound_theme = 'default'
 let g:keysound_py_version = 3
