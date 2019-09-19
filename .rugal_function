@@ -105,3 +105,8 @@ v2-sh() {
   do v2 "$input";
   done;
 }
+
+csv() {
+    FILE=$1
+    column -s, -t < $FILE | less -#2 -N -S
+}
