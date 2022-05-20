@@ -1,7 +1,7 @@
 require "plugin"
 require "color"
 require "mapping"
-
+require "completion"
 
 local options = {
   foldmethod = "expr",
