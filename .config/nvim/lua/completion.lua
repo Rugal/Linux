@@ -78,8 +78,6 @@ cmp_config = {
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif check_backspace() then
-        fallback()
       else
         fallback()
       end

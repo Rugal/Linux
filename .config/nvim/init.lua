@@ -25,7 +25,7 @@ local options = {
 
   spell = true,
   spelllang = { 'en_us' },
-  ignorecase = false,
+  ignorecase = true,
 }
 
 vim.opt.shortmess:append "c"
