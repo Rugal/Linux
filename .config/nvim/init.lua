@@ -28,6 +28,8 @@ local options = {
   ignorecase = true,
 }
 
+require "treesitter"
+
 vim.opt.shortmess:append "c"
 
 for k, v in pairs(options) do
