@@ -267,18 +267,31 @@ return packer.startup(function(use)
 
   -- LSP
   use {
-    "williamboman/nvim-lsp-installer",
+    "neovim/nvim-lspconfig",
     {
-      "neovim/nvim-lspconfig",
       config = function()
-        require("nvim-lsp-installer").setup {
-              ensure_installed = {"jdtls", "jsonls", "remark_ls", "lemminx", "sumneko_lua", "bashls", "yamlls"},
-        }
-        local lspconfig = require("lspconfig")
-        lspconfig.sumneko_lua.setup {}
         require("lspconfig").vimls.setup{
           on_attach = require("aerial").on_attach,
         }
+      end
+    }
+  }
+
+  use {
+    "williamboman/nvim-lsp-installer",
+    {
+      config = function()
+        require("nvim-lsp-installer").setup({
+          automatic_installation = true,
+          ensure_installed = {"jdtls", "jsonls", "remark_ls", "lemminx", "sumneko_lua", "bashls", "yamlls", "clojure_lsp"},
+          ui = {
+            icons = {
+              server_installed = "✓",
+              server_pending = "➜",
+              server_uninstalled = "✗"
+            }
+          },
+        })
       end
     }
   }
@@ -294,6 +307,10 @@ return packer.startup(function(use)
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
+
+        indent = {
+          enable = true,
+        },
 
         highlight = {
           -- `false` will disable the whole extension
