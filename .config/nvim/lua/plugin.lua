@@ -1,5 +1,3 @@
---git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
 local fn = vim.fn
 
 vim.cmd('set termguicolors tgc')
@@ -273,9 +271,10 @@ return packer.startup(function(use)
     {
       "neovim/nvim-lspconfig",
       config = function()
+        local servers = {"jdtls", "jsonls", "remark_ls", "lemminx", "sumneko_lua", "bashls", "yamlls", "clojure_lsp", "jedi_language_server"}
         require("nvim-lsp-installer").setup {
           automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
-          ensure_installed = {"jdtls", "jsonls", "remark_ls", "lemminx", "sumneko_lua", "bashls", "yamlls", "clojure_lsp"},
+          ensure_installed = servers,
           ui = {
             icons = {
               server_installed = "✓",
@@ -319,7 +318,6 @@ return packer.startup(function(use)
 
         -- Use a loop to conveniently call 'setup' on multiple servers and
         -- map buffer local keybindings when the language server attaches
-        local servers = {"jdtls", "jsonls", "remark_ls", "lemminx", "sumneko_lua", "bashls", "yamlls", "clojure_lsp"}
         local lspconfig = require("lspconfig")
         for _, lsp in pairs(servers) do
           lspconfig[lsp].setup {
@@ -336,6 +334,18 @@ return packer.startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    require'nvim-treesitter.configs'.setup {
+      -- A list of parser names, or "all"
+      ensure_installed = { "c", "lua", "json", "java", "markdown", "clojure", "html", "yaml", "python"},
+      sync_install = true,
+      indent = {
+        enable = true,
+      },
+      highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+      },
+    }
   }
 
   -- git
@@ -361,9 +371,18 @@ return packer.startup(function(use)
     tag = "v2.*",
     config = function()
       require("bufferline").setup{}
-      diagnostics_indicator = function(count, level, diagnostics_dict, context)
+      --[[ diagnostics_indicator = function(count, level, diagnostics_dict, context)
         local icon = level:match("error") and " " or " "
         return " " .. icon .. count
+      end ]]
+      diagnostics_indicator = function(count, level, diagnostics_dict, context)
+        local s = " "
+        for e, n in pairs(diagnostics_dict) do
+          local sym = e == "error" and " "
+          or (e == "warning" and " " or "" )
+          s = s .. n .. sym
+        end
+        return s
       end
     end
   }
@@ -397,9 +416,42 @@ return packer.startup(function(use)
     end
   }
 
+  use {
+    "folke/trouble.nvim",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  use {
+    'nvim-telescope/telescope.nvim',
+  }
+
+  use "xiyaowong/nvim-cursorword"
+
+  -- game
+  use "seandewar/nvimesweeper"
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
     require("packer").sync()
   end
 end)
+
