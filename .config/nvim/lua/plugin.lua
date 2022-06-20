@@ -249,8 +249,6 @@ return packer.startup(function(use)
           }
         }
       })
-
-      vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
     end
 
   }
@@ -349,11 +347,36 @@ return packer.startup(function(use)
   }
 
   -- git
+  -- <leader>hp: preview hunk
+  -- <leader>hs: stage hunk
+  -- <leader>hu: unstage hunk
   use {
     'lewis6991/gitsigns.nvim',
     tag = 'release', -- To use the latest release
+    requires = {
+      "tpope/vim-repeat",
+    },
     config = function()
-      require('gitsigns').setup{}
+      require('gitsigns').setup {
+        signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+        numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+        linehl     = true, -- Toggle with `:Gitsigns toggle_linehl`
+        word_diff  = true, -- Toggle with `:Gitsigns toggle_word_diff`
+        attach_to_untracked = true,
+        current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+      }
+    end
+  }
+
+  use {
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      local null_ls = require("null-ls")
+      null_ls.setup {
+        sources = {
+          null_ls.builtins.code_actions.gitsigns,
+        }
+      }
     end
   }
 
@@ -416,6 +439,8 @@ return packer.startup(function(use)
     end
   }
 
+  -- trouble
+  -- :TroubleToggle
   use {
     "folke/trouble.nvim",
     config = function()
@@ -427,6 +452,10 @@ return packer.startup(function(use)
     end
   }
 
+  -- TODO highlight
+  -- :TodoTrouble
+  -- :TodoLocList
+  -- :TodoTelescope
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
@@ -439,6 +468,8 @@ return packer.startup(function(use)
     end
   }
 
+  -- File search
+  -- :Telescope
   use {
     'nvim-telescope/telescope.nvim',
   }

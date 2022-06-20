@@ -27,8 +27,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>w", ":%s/\\s\\+$//<cr>:let @/=''<CR>", opts)
 
 -- toggle
-keymap("n", "<F12>", ":Neotree toggle<CR>", opts)
-keymap("n", "<F10>", ":AerialToggle<CR>", opts)
+keymap("n", "\\", ":Neotree toggle<CR>", opts)
+keymap("n", "<F12>", ":AerialToggle<CR>", opts)
 
 -- window size
 keymap("n", "<C-S-Left>", ":vertical resize +5<CR>", opts)
