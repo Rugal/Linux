@@ -264,12 +264,16 @@ return packer.startup(function(use)
   use 'b3nj5m1n/kommentary'
 
   -- LSP
+  -- gD    go to declaration
+  -- gd    go to definition
+  -- K     show signature
+  -- gr    show reference
   use {
     "williamboman/nvim-lsp-installer",
     {
       "neovim/nvim-lspconfig",
       config = function()
-        local servers = {"jdtls", "jsonls", "remark_ls", "lemminx", "sumneko_lua", "bashls", "yamlls", "clojure_lsp", "jedi_language_server"}
+        local servers = {"jdtls", "jsonls", "remark_ls", "lemminx", "sumneko_lua", "bashls", "yamlls", "clojure_lsp", "pyright", "clangd"}
         require("nvim-lsp-installer").setup {
           automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
           ensure_installed = servers,
@@ -300,16 +304,16 @@ return packer.startup(function(use)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+          -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+          -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+          -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+          -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+          -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+          -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+          -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
           require("aerial").on_attach(client, bufnr)
         end
@@ -328,13 +332,14 @@ return packer.startup(function(use)
     }
   }
 
-  -- syntax
+  -- syntax highlight
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     require'nvim-treesitter.configs'.setup {
       -- A list of parser names, or "all"
-      ensure_installed = { "c", "lua", "json", "java", "markdown", "clojure", "html", "yaml", "python"},
+      ensure_installed = { "c", "cpp", "lua", "cmake", "json", "java", "markdown", "clojure", "html", "yaml", "python", "gitignore", "kotlin", "tsx", "typescript", "sql" },
+
       sync_install = true,
       indent = {
         enable = true,
@@ -364,18 +369,6 @@ return packer.startup(function(use)
         word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
         attach_to_untracked = true,
         current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
-      }
-    end
-  }
-
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      local null_ls = require("null-ls")
-      null_ls.setup {
-        sources = {
-          null_ls.builtins.code_actions.gitsigns,
-        }
       }
     end
   }
@@ -418,6 +411,34 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-cmdline'
   use 'f3fora/cmp-spell'
 
+  use {
+    "lewis6991/hover.nvim",
+    config = function()
+      require("hover").setup {
+        init = function()
+          -- Require providers
+          require("hover.providers.lsp")
+          -- require('hover.providers.gh')
+          -- require('hover.providers.jira')
+          require('hover.providers.man')
+          require('hover.providers.dictionary')
+        end,
+        preview_opts = {
+          -- border = nil
+          border = 'single'
+        },
+        -- Whether the contents of a currently open hover window should be moved
+        -- to a :h preview-window when pressing the hover keymap.
+        preview_window = false,
+        title = true
+      }
+
+      -- Setup keymaps
+      vim.keymap.set("n", "K", require("hover").hover, {desc = "hover.nvim"})
+      -- vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
+    end
+  }
+
   -- parenthesis
   use {
     "windwp/nvim-autopairs",
@@ -452,7 +473,7 @@ return packer.startup(function(use)
     end
   }
 
-  -- TODO highlight
+  -- todo highlight
   -- :TodoTrouble
   -- :TodoLocList
   -- :TodoTelescope
@@ -474,7 +495,45 @@ return packer.startup(function(use)
     'nvim-telescope/telescope.nvim',
   }
 
-  use "xiyaowong/nvim-cursorword"
+  -- use "xiyaowong/nvim-cursorword"
+  use {
+    "yamatsum/nvim-cursorline",
+    config = function()
+      require('nvim-cursorline').setup {
+        cursorline = {
+          enable = true,
+          timeout = 1000,
+          number = false,
+        },
+        cursorword = {
+          enable = true,
+          min_length = 3,
+          hl = { underline = true },
+        }
+      }
+    end
+  }
+
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+  use {
+    "mfussenegger/nvim-lint",
+    config = function()
+      require('lint').linters_by_ft = {
+          python = {"pycodestyle",},
+          cpp = {"cppcheck",}
+      }
+    end
+  }
 
   -- game
   use "seandewar/nvimesweeper"
@@ -485,4 +544,3 @@ return packer.startup(function(use)
     require("packer").sync()
   end
 end)
-
