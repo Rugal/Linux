@@ -1,4 +1,6 @@
-vim.cmd('colorscheme solarized-high')
+-- vim.cmd('colorscheme solarized-high')
+vim.cmd[[colorscheme tokyonight]]
+
 
 if vim.fn.has('gui_running') == 0 then
     vim.g.solarized_termtrans = 0

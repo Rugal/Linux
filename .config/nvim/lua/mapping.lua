@@ -28,7 +28,7 @@ keymap("n", "<leader>w", ":%s/\\s\\+$//<cr>:let @/=''<CR>", opts)
 
 -- toggle
 keymap("n", "\\", ":Neotree toggle<CR>", opts)
-keymap("n", "<F12>", ":AerialToggle<CR>", opts)
+keymap("n", "<F12>", ":SymbolsOutline<CR>", opts)
 
 -- window size
 keymap("n", "<C-S-Left>", ":vertical resize +5<CR>", opts)
@@ -37,3 +37,5 @@ keymap("n", "<C-S-Right>", ":vertical resize -5<CR>", opts)
 -- buffer line
 keymap("n", "<tab>", ":BufferLineCycleNext<CR>", opts)
 keymap("n", "<s-tab>", ":BufferLineCyclePrev<CR>", opts)
+
+keymap("n", "<C-X>",  ":lua require('close_buffers').delete({type = 'this'})<CR>", opts)

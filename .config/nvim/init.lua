@@ -4,6 +4,8 @@ require "mapping"
 require "completion"
 require "autocommand"
 
+require('telescope').load_extension('fzf')
+
 local options = {
   foldmethod = "expr",
   foldexpr = "nvim_treesitter#foldexpr()",
@@ -24,7 +26,7 @@ local options = {
   softtabstop = 2,
 
   list = true,
-  listchars = "eol:$,tab:>-,trail:~,extends:>,precedes:<",
+  listchars = "eol:↴,tab:>-,trail:~,extends:>,precedes:<",
 
   cursorline = true,
   cursorcolumn = false,

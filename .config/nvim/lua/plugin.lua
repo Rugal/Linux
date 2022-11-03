@@ -5,19 +5,19 @@ vim.cmd('set termguicolors tgc')
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-  PACKER_BOOTSTRAP = fn.system {
-    "git",
-    "clone",
-    "--depth",
-    "1",
-    "https://github.com/wbthomason/packer.nvim",
-    install_path,
-  }
+  PACKER_BOOTSTRAP = fn.system 
+  "git",
+  "clone",
+  "--depth",
+  "1",
+  "https://github.com/bthomason/packer.nvim",
+  install_path,
+
   print "Installing packer close and reopen Neovim..."
   vim.cmd [[packadd packer.nvim]]
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
+-- Autocommand that reloads neovim henever you save the plugins.lua file
 vim.cmd [[
 augroup packer_user_config
 autocmd!
@@ -47,9 +47,11 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "kyazdani42/nvim-web-devicons"
+  use "BurntSushi/ripgrep"
 
   -- Colorschemes
   use "ishan9299/nvim-solarized-lua"
+  use 'folke/tokyonight.nvim'
 
   -- greeter
   use {
@@ -188,14 +190,22 @@ return packer.startup(function(use)
             hide_gitignored = false,
             hide_hidden = true, -- only works on Windows for hidden files/directories
             hide_by_name = {
-              --"node_modules"
+             "node_modules",
             },
             hide_by_pattern = { -- uses glob style patterns
+              "*.analyzerinfo",
+              "*.snalyzerinfo"
               --"*.meta"
             },
             never_show = { -- remains hidden even if visible is toggled to true
-              --".DS_Store",
-              --"thumbs.db"
+              ".DS_Store",
+              ".gradle",
+              ".idea",
+              "thumbs.db"
+            },
+            never_show_by_pattern = { -- uses glob style patterns
+              "*.analyzerinfo",
+              "*.snalyzerinfo"
             },
           },
           follow_current_file = false, -- This will find and focus the file in the active buffer every
@@ -250,18 +260,66 @@ return packer.startup(function(use)
         }
       })
     end
-
   }
 
+  -- code outline
+  -- F12
+  -- K : toggle preview
+  -- h : fold
+  -- l : unfold
+  -- E : unfold all
+  -- W : fold all
+  -- a : code action
+  -- o : focus
+  -- <CR> : goto
   use {
-    'stevearc/aerial.nvim',
+    'simrat39/symbols-outline.nvim',
     config = function()
-      require('aerial').setup({})
+      local opts = {
+        highlight_hovered_item = true,
+        show_guides = true,
+        auto_preview = true,
+        position = 'right',
+        relative_width = true,
+        width = 25,
+        auto_close = false,
+        show_numbers = true,
+        show_relative_numbers = true,
+        show_symbol_details = true,
+        preview_bg_highlight = 'Pmenu',
+        autofold_depth = 2,
+        auto_unfold_hover = false,
+        fold_markers = { '', '' },
+        wrap = false,
+        keymaps = { -- These keymaps can be a string or a table for multiple keys
+          close = {"<Esc>", "q"},
+          goto_location = "<Cr>",
+          focus_location = "o",
+          hover_symbol = "<C-space>",
+          toggle_preview = "K",
+          rename_symbol = "r",
+          code_actions = "a",
+          fold = "h",
+          unfold = "l",
+          fold_all = "W",
+          unfold_all = "E",
+          fold_reset = "R",
+        },
+      }
+      require("symbols-outline").setup(opts)
     end
   }
 
   -- comment
-  use 'b3nj5m1n/kommentary'
+  -- use 'b3nj5m1n/kommentary'
+  -- gcc     line-wise comment
+  -- gbc     block-wise comment
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
 
   -- LSP
   -- gD    go to declaration
@@ -273,7 +331,7 @@ return packer.startup(function(use)
     {
       "neovim/nvim-lspconfig",
       config = function()
-        local servers = {"jdtls", "jsonls", "remark_ls", "lemminx", "sumneko_lua", "bashls", "yamlls", "clojure_lsp", "pyright", "clangd"}
+        local servers = {"bashls", "clangd", "clojure_lsp", "cmake", "eslint", "graphql", "html", "jdtls", "jedi_language_server", "jsonls", "kotlin_language_server", "lemminx", "pyright", "remark_ls", "sqlls", "sumneko_lua", "vim", "yamlls"}
         require("nvim-lsp-installer").setup {
           automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
           ensure_installed = servers,
@@ -315,7 +373,7 @@ return packer.startup(function(use)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
           -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-          require("aerial").on_attach(client, bufnr)
+          -- require("aerial").on_attach(client, bufnr)
         end
 
         -- Use a loop to conveniently call 'setup' on multiple servers and
@@ -330,6 +388,18 @@ return packer.startup(function(use)
         end
       end
     }
+  }
+
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup {
+        -- for example, context is off by default, use this to turn it on
+        space_char_blankline = " ",
+        show_current_context = true,
+        show_current_context_start = true,
+      }
+    end
   }
 
   -- syntax highlight
@@ -411,6 +481,8 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-cmdline'
   use 'f3fora/cmp-spell'
 
+  -- hover information
+  -- K toggle
   use {
     "lewis6991/hover.nvim",
     config = function()
@@ -438,6 +510,20 @@ return packer.startup(function(use)
       -- vim.keymap.set("n", "gK", require("hover").hover_select, {desc = "hover.nvim (select)"})
     end
   }
+
+  -- change surrounding character
+  -- ys{motion}{char}
+  -- ds{char}
+  -- cs{target}{replacement}
+  use({
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
+  })
 
   -- parenthesis
   use {
@@ -473,13 +559,20 @@ return packer.startup(function(use)
     end
   }
 
+	use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
+  }
+
   -- todo highlight
   -- :TodoTrouble
   -- :TodoLocList
   -- :TodoTelescope
   use {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    requires = {
+      -- "tpope/vim-repeat",
+    },
     config = function()
       require("todo-comments").setup {
         -- your configuration comes here
@@ -493,6 +586,19 @@ return packer.startup(function(use)
   -- :Telescope
   use {
     'nvim-telescope/telescope.nvim',
+    config = function()
+      require('telescope').setup {
+        extensions = {
+          fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+          }
+        }
+      }
+    end
   }
 
   -- use "xiyaowong/nvim-cursorword"
@@ -524,6 +630,25 @@ return packer.startup(function(use)
       }
     end
   }
+
+  use {
+    "kazhala/close-buffers.nvim",
+    config = function()
+      require('close_buffers').setup({
+        preserve_window_layout = { 'this' },
+        next_buffer_cmd = function(windows)
+          require('bufferline').cycle(1)
+          local bufnr = vim.api.nvim_get_current_buf()
+
+          for _, window in ipairs(windows) do
+            vim.api.nvim_win_set_buf(window, bufnr)
+          end
+        end,
+      })
+    end
+  }
+
+  use 'm4xshen/autoclose.nvim'
 
   use {
     "mfussenegger/nvim-lint",
