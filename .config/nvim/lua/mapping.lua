@@ -4,9 +4,9 @@ local opts = { noremap = true, silent = true }
 local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- keymap("", "<Space>", "<Nop>", opts)
+-- vim.g.mapleader = " "
+-- vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -27,7 +27,7 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>w", ":%s/\\s\\+$//<cr>:let @/=''<CR>", opts)
 
 -- toggle
-keymap("n", "\\", ":Neotree toggle<CR>", opts)
+keymap("n", "<F10>", ":Neotree toggle<CR>", opts)
 keymap("n", "<F12>", ":SymbolsOutline<CR>", opts)
 
 -- window size
