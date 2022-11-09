@@ -7,10 +7,14 @@ require "autocommand"
 require('telescope').load_extension('fzf')
 
 local options = {
-  foldmethod = "expr",
-  foldexpr = "nvim_treesitter#foldexpr()",
+  -- foldmethod = "expr",
+  -- foldexpr = "nvim_treesitter#foldexpr()",
+  fillchars = "eob: ,fold: ,foldopen:,foldsep: ,foldclose:",
+
   foldenable = true,
   foldlevel = 99,
+  foldcolumn = '1',
+  foldlevelstart = 99,
 
   ff="unix",
 

@@ -39,3 +39,16 @@ keymap("n", "<tab>", ":BufferLineCycleNext<CR>", opts)
 keymap("n", "<s-tab>", ":BufferLineCyclePrev<CR>", opts)
 
 keymap("n", "<C-X>",  ":lua require('close_buffers').delete({type = 'this'})<CR>", opts)
+
+-- debug
+
+keymap("n", "<F4>", "<Cmd>lua require'dap'.terminate()<CR>", opts)
+keymap("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>", opts)
+keymap("n", "<F6>", "<Cmd>lua require'dap'.step_out()<CR>", opts)
+keymap("n", "<F7>", "<Cmd>lua require'dap'.step_into()<CR>", opts)
+keymap("n", "<F8>", "<Cmd>lua require'dap'.step_over()<CR>", opts)
+keymap("n", "<F9>", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>", opts)
+
+-- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+keymap("n", "zR", "<Cmd>lua require('ufo').openAllFolds()<CR>", opts)
+keymap("n", "zM", "<Cmd>lua require('ufo').closeAllFolds()<CR>", opts)

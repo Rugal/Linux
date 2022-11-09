@@ -335,6 +335,47 @@ return packer.startup(function(use)
     run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
   }
 
+
+  ------------------------------------
+  -- debug
+  ------------------------------------
+  use {
+    "mfussenegger/nvim-dap",
+    config = function()
+      require("debug.cpp")
+    end
+  }
+
+  -- use 'mfussenegger/nvim-jdtls'
+
+  use {
+    'mfussenegger/nvim-dap-python',
+    config = function()
+      require('dap-python').setup()
+    end
+  }
+
+  use {
+    "rcarriga/nvim-dap-ui",
+    requires = {"mfussenegger/nvim-dap"},
+    config = function()
+      require("dapui").setup()
+
+      local dap, dapui = require("dap"), require("dapui")
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+
+    end
+  }
+
+
   ------------------------------------
   -- lint
   ------------------------------------
@@ -363,6 +404,26 @@ return packer.startup(function(use)
   }
 
   ------------------------------------
+  -- notification
+  ------------------------------------
+  use "rcarriga/nvim-notify"
+
+  use({
+    "folke/noice.nvim",
+    config = function()
+      require("noice").setup()
+    end,
+    requires = {
+      -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+      "MunifTanjim/nui.nvim",
+      -- OPTIONAL:
+      --   `nvim-notify` is only needed, if you want to use the notification view.
+      --   If not available, we use `mini` as the fallback
+      "rcarriga/nvim-notify",
+    }
+  })
+
+  ------------------------------------
   -- other
   ------------------------------------
   use {
@@ -382,6 +443,10 @@ return packer.startup(function(use)
       }
     end
   }
+
+  -- folding
+  use 'kevinhwang91/nvim-ufo'
+  use 'kevinhwang91/promise-async'
 
   -- trouble
   -- :TroubleToggle
