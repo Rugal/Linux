@@ -93,7 +93,9 @@ local plugins = {
   -- <CR> : goto
   {
     'simrat39/symbols-outline.nvim',
-    lazy = false,
+    keys = {
+      { "<space>cs", "<cmd>SymbolsOutline<cr>", desc = "Toggle Symbol Outline" },
+    },
     config = function()
       require("symbols-outline").setup {
         highlight_hovered_item = true,
