@@ -12,6 +12,10 @@ M.treesitter = {
     "c",
     "markdown",
     "markdown_inline",
+    "xml",
+    "http",
+    "json",
+    "graphql",
 
     "clojure",
     "java",
