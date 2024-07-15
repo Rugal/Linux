@@ -20,27 +20,41 @@ return {
   	"williamboman/mason.nvim",
   	opts = {
   		ensure_installed = {
+        -- jvm
+        "clojure-lsp", "jdtls", "kotlin-language-server",
+        -- neovim
         "lua-language-server",
-        "html-lsp",
-        "clojure-lsp",
-        "jdtls",
-        "jedi-language-server",
-        "kotlin-language-server",
-        "yaml-language-server",
-        "eslint-lsp",
-        "stylua"
+        -- DOM
+        "html-lsp", "typescript-language-server",
+        -- configuration
+        "graphql-language-server", "jq-lsp", "json-lsp", "yaml-language-server", "remark-language-server",
+        -- C
+        "clangd", "cmake-language-server",
+         "rust-analyzer", "gopls",
+        "pyright"
   		},
   	},
   },
 
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-        "java", "kotlin", "clojure", "yaml", "xml",
-  			"vim", "lua", "vimdoc",
-       "html", "css"
-  		},
-  	},
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        -- git
+        "git_config", "git_rebase", "gitattributes", "gitignore", "gitcommit",
+        -- jvm
+        "java", "kotlin", "clojure",
+        "python",
+        -- DOM
+        "html", "javascript", "typescript", "css", "jq",
+        -- configuration
+        "yaml", "xml", "json", "graphql",
+        "tmux",
+        "sql",
+        "latex",
+        -- neovim
+        "vim", "lua", "vimdoc"
+      },
+    },
   },
 }

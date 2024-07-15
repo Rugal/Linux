@@ -13,6 +13,8 @@ local options = {
   list = true,
   listchars = "eol:↴,tab:>-,trail:~,extends:>,precedes:<",
 
+  foldmethod = 'expr',
+  foldexpr = 'nvim_treesitter#foldexpr()',
   -- relativenumber = true,
   -- termguicolors = true,
 }
