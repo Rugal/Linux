@@ -32,19 +32,15 @@ local rugalLogo = {
 ---@type ChadrcConfig
 local M = {}
 
-M.ui = {
-  theme = "tokyonight",
-  theme_toggle = { "tokyonight", "solarized_dark" },
+M.base46 = {
+    theme = "tokyonight",
+    theme_toggle = { "tokyonight", "solarized_dark" },
+}
 
-  nvdash = {
-    load_on_startup = true,
+M.nvdash = {
+  load_on_startup = true,
 
-    header = rugalLogo,
-  },
-	-- hl_override = {
-	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
-	-- },
+  header = rugalLogo,
 }
 
 return M

@@ -52,6 +52,7 @@ return {
         "tmux",
         "sql",
         "latex",
+        "editorconfig",
         -- neovim
         "vim", "lua", "vimdoc"
       },
