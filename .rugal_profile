@@ -18,3 +18,9 @@ export EDITOR="$VISUAL"
 
 # brew stuff
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# ctrl + v to edit current command in neovim
+bindkey -v
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey -M viins '^v' edit-command-line
