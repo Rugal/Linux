@@ -1,0 +1,181 @@
+{
+  "feature": "{FEATURE_NAME}",
+  "manifestVersion": "3.0",
+  "lastUpdated": "{ISO8601_TIMESTAMP}",
+  "lifecycle": {
+    "status": "in-progress",
+    "currentPhase": "requirements",
+    "progress": 0.0,
+    "startDate": "{YYYY-MM-DD}",
+    "estimatedCompletion": null,
+    "totalConversationTurns": 0,
+    "totalSessions": 0
+  },
+  "documentVersions": {
+    "requirements": {
+      "currentVersion": "v1",
+      "versions": [
+        {
+          "version": "v1",
+          "createdAt": "{ISO8601_TIMESTAMP}",
+          "currentFile": "requirements.md",
+          "status": "active"
+        }
+      ]
+    },
+    "design": {
+      "currentVersion": "v1",
+      "versions": [
+        {
+          "version": "v1",
+          "createdAt": "{ISO8601_TIMESTAMP}",
+          "currentFile": "design.md",
+          "status": "active"
+        }
+      ]
+    },
+    "tasks": {
+      "currentVersion": "v1",
+      "versions": [
+        {
+          "version": "v1",
+          "createdAt": "{ISO8601_TIMESTAMP}",
+          "currentFile": "tasks.md",
+          "status": "active"
+        }
+      ]
+    }
+  },
+  "documentReferences": {
+    "requirements": {
+      "path": "specs/{FEATURE_NAME}/requirements.md",
+      "currentVersion": "v1",
+      "lastModified": "{ISO8601_TIMESTAMP}",
+      "checksum": "sha256:{HASH}",
+      "loadStrategy": "on-demand-full",
+      "estimatedTokens": 2500
+    },
+    "design": {
+      "path": "specs/{FEATURE_NAME}/design.md",
+      "currentVersion": "v1",
+      "lastModified": "{ISO8601_TIMESTAMP}",
+      "checksum": "sha256:{HASH}",
+      "loadStrategy": "on-demand-standard",
+      "estimatedTokens": 3500
+    },
+    "tasks": {
+      "path": "specs/{FEATURE_NAME}/tasks.md",
+      "currentVersion": "v1",
+      "lastModified": "{ISO8601_TIMESTAMP}",
+      "checksum": "sha256:{HASH}",
+      "loadStrategy": "on-demand-standard",
+      "estimatedTokens": 2000
+    },
+    "steering": {
+      "product": {
+        "pathEn": ".claude/spec-workflow/steering/product.md",
+        "pathZh": ".claude/spec-workflow/steering/product-zh.md",
+        "loadStrategy": "on-demand-standard",
+        "estimatedTokens": 1500,
+        "preferredLanguage": "auto"
+      },
+      "structure": {
+        "pathEn": ".claude/spec-workflow/steering/structure.md",
+        "pathZh": ".claude/spec-workflow/steering/structure-zh.md",
+        "loadStrategy": "on-demand-standard",
+        "estimatedTokens": 2000,
+        "preferredLanguage": "auto"
+      },
+      "tech": {
+        "pathEn": ".claude/spec-workflow/steering/tech.md",
+        "pathZh": ".claude/spec-workflow/steering/tech-zh.md",
+        "loadStrategy": "on-demand-standard",
+        "estimatedTokens": 1800,
+        "preferredLanguage": "auto"
+      }
+    }
+  },
+  "conversationTimeline": {
+    "semanticChunks": [],
+    "recentSessions": []
+  },
+  "implLogs": {
+    "total": 0,
+    "recent": [],
+    "summaryPath": "impl-logs/summary-latest.md",
+    "summaryLastUpdated": null,
+    "summaryCovered": []
+  },
+  "contextWeighting": {
+    "strategy": "time-decay-with-relevance",
+    "parameters": {
+      "recentSessionsWeight": 1.0,
+      "decayHalfLife": 3.0,
+      "deprecatedContentWeight": 0.05,
+      "activeRevisionsWeight": 0.9
+    },
+    "currentWeights": {}
+  },
+  "loadRecommendations": {
+    "quick": {
+      "items": [],
+      "totalTokens": 0,
+      "loadTime": "0s"
+    },
+    "standard": {
+      "items": [],
+      "totalTokens": 0,
+      "loadTime": "0s"
+    },
+    "full": {
+      "note": "Include all contexts including deprecated",
+      "totalTokens": 0,
+      "loadTime": "0s"
+    }
+  },
+  "deprecated": {
+    "contexts": []
+  },
+  "autoCheckpointConfig": {
+    "enabled": true,
+    "triggers": [
+      {
+        "type": "turn-count",
+        "threshold": 25,
+        "action": "prompt-user"
+      },
+      {
+        "type": "time-duration",
+        "threshold": "90 minutes",
+        "action": "prompt-user"
+      },
+      {
+        "type": "milestone-detected",
+        "patterns": [
+          "section completed",
+          "design approved"
+        ],
+        "action": "prompt-user-strong"
+      },
+      {
+        "type": "document-modified",
+        "files": [
+          "requirements.md",
+          "design.md",
+          "tasks.md"
+        ],
+        "action": "suggest-checkpoint"
+      },
+      {
+        "type": "context-switch",
+        "patterns": [
+          "切换",
+          "先放一下"
+        ],
+        "action": "prompt-user-strong"
+      }
+    ],
+    "promptStyle": "gentle",
+    "cooldownMinutes": 20
+  }
+}

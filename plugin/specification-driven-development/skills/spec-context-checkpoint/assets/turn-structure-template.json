@@ -1,0 +1,496 @@
+# Turn Structure Template
+
+**Purpose**: Detailed JSON structure for saving conversation turns with complete information.
+
+## Complete Turn Structure
+
+```json
+{
+  "turn": 1,
+  "timestamp": "2026-01-28T14:30:00Z",
+  
+  "user": {
+    "message": "[COMPLETE USER MESSAGE - NO TRUNCATION]",
+    "messageLength": 156,
+    "intent": "question",
+    "context": {
+      "mentionedFiles": ["design.md", "UnifiedMessageTypeConverter.java"],
+      "mentionedConcepts": ["subMsgType", "contentKey"],
+      "attachments": []
+    }
+  },
+  
+  "ai": {
+    "message": "[COMPLETE AI RESPONSE - NO TRUNCATION]\n\nThis should include:\n- All explanations\n- All code snippets\n- All reasoning\n- All suggestions\n\nExample:\n'让我分析一下现有的UnifiedMessageTypeConverter实现...\n\n```java\npublic String matchMessageTypeByValue(int value) {\n    // ... complete code ...\n}\n```\n\n从这段代码可以看出...[完整分析]...\n\n因此我建议...[完整建议]...'",
+    
+    "messageLength": 2341,
+    
+    "reasoning": "Brief summary of AI's thought process (1-2 sentences)",
+    
+    "keyPoints": [
+      "Analyzed UnifiedMessageTypeConverter.matchMessageTypeByValue()",
+      "Found that unmapped msgTypes use Backend name directly",
+      "Recommended single subMsgType + multiple contentKey approach",
+      "Provided code examples and comparison table"
+    ],
+    
+    "filesReferenced": [
+      "UnifiedMessageTypeConverter.java",
+      "ChannelSystemMessageMuteSingleHandler.java",
+      "design.md"
+    ],
+    
+    "codeSnippets": [
+      {
+        "language": "java",
+        "file": "UnifiedMessageTypeConverter.java",
+        "purpose": "Analyzed to understand msgType mapping",
+        "snippet": "public String matchMessageTypeByValue(int value) {\n    // When msgType not in mapping table\n    return backendMsgTypeName;\n}"
+      },
+      {
+        "language": "java",
+        "file": "ChannelSystemMessageMuteSingleHandler.java",
+        "purpose": "Reference for contentKeyParams structure",
+        "snippet": "outMsg.setContentKeyParams(Arrays.asList(operatorNickname, targetNickname));"
+      }
+    ],
+    
+    "codeGenerated": false,
+    
+    "fileChanges": [
+      {
+        "operation": "edit",
+        "file": "design.md",
+        "purpose": "Optimize system message architecture",
+        "changes": [
+          {
+            "type": "deletion",
+            "section": "4.1 Backend枚举定义",
+            "description": "Deleted duplicate REFUSED_TO_JOIN enum",
+            "linesAffected": "142-145",
+            "contentBefore": "CHANNEL_SYSTEM_MESSAGE_REFUSED_TO_JOIN(45015, \"...\")",
+            "contentAfter": null
+          },
+          {
+            "type": "modification",
+            "section": "4.1 Backend枚举定义",
+            "description": "Renamed to BLACKLIST_INVITE",
+            "linesAffected": "140-141",
+            "contentBefore": "CHANNEL_SYSTEM_MESSAGE_BLOCKED_CANNOT_INVITE(45014, \"...\")",
+            "contentAfter": "CHANNEL_SYSTEM_MESSAGE_BLACKLIST_INVITE(45014, \"blacklist related invite failure\")"
+          },
+          {
+            "type": "addition",
+            "section": "4.2 ContentKey动态设置",
+            "description": "Added contentKey switching logic",
+            "linesAffected": "160-175",
+            "contentBefore": null,
+            "contentAfter": "// Scenario 1: I blocked the user\noutMsg.setContentKey(\"channel_system_blocked_cannot_invite\");\n\n// Scenario 2: User blocked me\noutMsg.setContentKey(\"channel_system_refused_to_join\");"
+          }
+        ],
+        "diffSummary": "Removed 1 enum, renamed 1 enum, added contentKey logic (net: -5 enums, +1 unified approach)",
+        "toolsUsed": ["edit_existing_file", "python inline script for batch replacement"]
+      },
+      {
+        "operation": "edit",
+        "file": "tasks.md",
+        "purpose": "Update Phase 5 tasks to reflect new architecture",
+        "changes": [
+          {
+            "type": "deletion",
+            "section": "Phase 5: 系统消息处理",
+            "description": "Removed RefusedToJoinHandler task",
+            "linesAffected": "89-92",
+            "contentBefore": "- [ ] Task 5.2: Create ChannelSystemMessageRefusedToJoinHandler",
+            "contentAfter": null
+          },
+          {
+            "type": "modification",
+            "section": "Phase 5: 系统消息处理",
+            "description": "Updated task 5.1 to use unified approach",
+            "linesAffected": "85-88",
+            "contentBefore": "- [ ] Task 5.1: Create ChannelSystemMessageBlockedCannotInviteHandler",
+            "contentAfter": "- [ ] Task 5.1: Send system message in HaodeskChatGroupInfoService (dynamic contentKey)"
+          }
+        ],
+        "diffSummary": "Removed 1 task, simplified 1 task (net: -1 Handler class, +inline logic)",
+        "toolsUsed": ["edit_existing_file"]
+      }
+    ],
+    
+    "toolsUsed": [
+      {"tool": "read_file", "count": 3, "files": ["UnifiedMessageTypeConverter.java", "ChannelSystemMessageMuteSingleHandler.java", "design.md"]},
+      {"tool": "edit_existing_file", "count": 2, "files": ["design.md", "tasks.md"]},
+      {"tool": "run_terminal_command", "count": 1, "purpose": "Python script for batch replacement"}
+    ]
+  },
+  
+  "outcome": {
+    "decision": "adopt-single-submsgtype-approach",
+    "decisionRationale": "User's suggestion to use 1 subMsgType + 2 contentKeys is simpler and more maintainable than 2 separate subMsgTypes",
+    "impact": {
+      "design": "Simplified architecture (1 enum instead of 2)",
+      "implementation": "No need for separate Handler classes",
+      "frontend": "Single subMsgType to handle, contentKey differentiates scenarios"
+    },
+    "nextAction": "verify-changes",
+    "blockers": []
+  },
+  
+  "tags": ["architecture-decision", "system-message", "enum-optimization"]
+}
+```
+
+---
+
+## Field Descriptions
+
+### user.message
+**CRITICAL**: Save the **COMPLETE** user message, word-for-word.
+- ✅ DO: Save exactly what user typed
+- ❌ DON'T: Summarize, paraphrase, or truncate
+- If message is very long (>2000 chars), still save it all
+
+### ai.message  
+**CRITICAL**: Save the **COMPLETE** AI response, including:
+- All explanations and reasoning
+- All code snippets (with ```language markers)
+- All examples and comparisons
+- All suggestions and next steps
+
+**Format**: Plain text with markdown formatting preserved
+
+**Example**:
+```
+"message": "让我分析一下现有的系统消息实现...\n\n经过查看 UnifiedMessageTypeConverter.java,我发现:\n\n```java\npublic String matchMessageTypeByValue(int value) {\n    // 如果msgType不在映射表中\n    // 会直接使用Backend的MsgType名称\n    return backendMsgTypeName;\n}\n```\n\n这说明...[完整分析]...\n\n因此我建议采用您提出的方案:1个subMsgType + 2个contentKey,原因如下:\n1. 更简洁...\n2. 更易维护...\n\n具体实现方式:\n```java\n// Scenario 1\noutMsg.setContentKey(\"channel_system_blocked_cannot_invite\");\n```\n\n这样修改后...[完整说明]..."
+```
+
+### ai.keyPoints
+Brief bullet points (5-10 items) summarizing what AI did in this turn:
+- Analyzed which files
+- Found what insights
+- Made what recommendations
+- Generated what code
+
+### ai.codeSnippets
+Array of code snippets that AI **analyzed or referenced** (not generated):
+- `language`: Programming language
+- `file`: Source file name
+- `purpose`: Why this code was shown (e.g., "Analyzed to understand...")
+- `snippet`: The actual code (can be multi-line)
+
+### ai.fileChanges
+**CRITICAL**: Detailed record of **every file modification**:
+
+#### Structure
+```json
+{
+  "operation": "edit | create | delete",
+  "file": "path/to/file",
+  "purpose": "Why this change was made",
+  "changes": [
+    {
+      "type": "addition | deletion | modification",
+      "section": "Which section of the file",
+      "description": "What was changed",
+      "linesAffected": "140-145",
+      "contentBefore": "Previous content (if deletion/modification)",
+      "contentAfter": "New content (if addition/modification)"
+    }
+  ],
+  "diffSummary": "High-level summary of net changes",
+  "toolsUsed": ["edit_existing_file", "create_new_file"]
+}
+```
+
+#### Example - Detailed Edit
+```json
+{
+  "operation": "edit",
+  "file": "design.md",
+  "purpose": "Remove duplicate enum definitions",
+  "changes": [
+    {
+      "type": "deletion",
+      "section": "4.1 Backend枚举定义",
+      "description": "Deleted REFUSED_TO_JOIN enum (duplicate)",
+      "linesAffected": "142-145",
+      "contentBefore": "CHANNEL_SYSTEM_MESSAGE_REFUSED_TO_JOIN(45015, \"channel system message - refused to join\"),",
+      "contentAfter": null
+    },
+    {
+      "type": "deletion",
+      "section": "4.1 Backend枚举定义",  
+      "description": "Deleted BLOCKED_CANNOT_INVITE enum (duplicate)",
+      "linesAffected": "147-150",
+      "contentBefore": "CHANNEL_SYSTEM_MESSAGE_BLOCKED_CANNOT_INVITE(45014, \"channel system message - blocked cannot invite\"),",
+      "contentAfter": null
+    },
+    {
+      "type": "modification",
+      "section": "4.1 Backend枚举定义",
+      "description": "Renamed remaining enum to BLACKLIST_INVITE",
+      "linesAffected": "140-141",
+      "contentBefore": "CHANNEL_SYSTEM_MESSAGE_BLOCKED_CANNOT_INVITE(45014, \"...\")",
+      "contentAfter": "CHANNEL_SYSTEM_MESSAGE_BLACKLIST_INVITE(45014, \"blacklist related invite failure\")"
+    }
+  ],
+  "diffSummary": "Removed 2 duplicate enums, renamed 1 enum. Net result: 1 unified enum",
+  "toolsUsed": ["python inline script", "grep verification"]
+}
+```
+
+#### Example - File Creation
+```json
+{
+  "operation": "create",
+  "file": "specs/payment/.context/manifest.json",
+  "purpose": "First checkpoint for this feature",
+  "changes": [
+    {
+      "type": "addition",
+      "section": "entire file",
+      "description": "Created manifest with initial structure",
+      "linesAffected": "1-85",
+      "contentBefore": null,
+      "contentAfter": "[Complete JSON content of manifest.json]"
+    }
+  ],
+  "diffSummary": "Created new manifest.json (85 lines)",
+  "toolsUsed": ["create_new_file"]
+}
+```
+
+### outcome.decision
+If a decision was made in this turn:
+- **decision**: Short identifier (e.g., "adopt-single-submsgtype")
+- **decisionRationale**: Why this decision was made
+- **impact**: How this affects design/implementation/etc
+- **blockers**: Any issues that need to be resolved
+
+---
+
+## Comparison: Wrong vs Correct
+
+### ❌ WRONG (Truncated)
+```json
+{
+  "user": {
+    "message": "为什么要新增两个subMsgType?..."  // ❌ Truncated
+  },
+  "ai": {
+    "message": "这是个非常好的问题!让我分析...",  // ❌ Truncated
+    "fileChanges": []  // ❌ No details
+  }
+}
+```
+
+**Problem**: 
+- User's full question lost
+- AI's complete analysis lost
+- No record of what was actually changed
+
+### ✅ CORRECT (Complete)
+```json
+{
+  "user": {
+    "message": "为什么要新增两个subMsgType?我们这个场景是不是只需要一个就行,基于这一个新增的subMsgType,配置几个contentKey就行了吧?",  // ✅ Complete
+    "messageLength": 68
+  },
+  "ai": {
+    "message": "[2341 characters of complete response including:\n- Code analysis of UnifiedMessageTypeConverter\n- Explanation of subMsgType vs contentKey roles\n- Comparison table\n- Recommendation with rationale\n- Implementation examples]",  // ✅ Complete
+    "messageLength": 2341,
+    "codeSnippets": [
+      {
+        "file": "UnifiedMessageTypeConverter.java",
+        "snippet": "public String matchMessageTypeByValue(int value) {...}"
+      }
+    ],
+    "fileChanges": [
+      {
+        "file": "design.md",
+        "changes": [
+          {
+            "type": "deletion",
+            "description": "Removed REFUSED_TO_JOIN enum",
+            "contentBefore": "CHANNEL_SYSTEM_MESSAGE_REFUSED_TO_JOIN(45015, ...)"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Result**:
+- Full conversational context preserved
+- Complete reasoning and code analysis saved
+- Detailed record of all file modifications
+- Resume can reconstruct exact work done
+
+---
+
+## Size Estimation
+
+Typical turn with detailed fileChanges:
+- User message: ~100-500 bytes
+- AI message: ~1000-5000 bytes
+- codeSnippets: ~500-2000 bytes
+- fileChanges: ~1000-3000 bytes
+- **Total per turn: ~2.5-10 KB**
+
+Session with 10-15 turns: **~25-150 KB**
+
+**This is acceptable** because:
+- Recent sessions are temporary (only last 3-5 kept)
+- Semantic chunks provide long-term compression
+- Complete information >> small file size
+- Resume needs full context for accurate continuation
+
+---
+
+
+
+---
+
+## Turn Filtering (Skip Checkpoint Meta-Operations)
+
+**IMPORTANT**: When saving session turns, SKIP checkpoint-related turns.
+
+### Why Filter?
+
+Checkpoint-related turns are meta-operations, not actual spec development work:
+- User: "保存上下文" (requesting checkpoint)
+- AI: "正在执行checkpoint skill..." (executing checkpoint)
+
+These turns don't contain spec design/implementation discussions and should not be saved.
+
+### How to Identify Checkpoint Turns
+
+**Skip if user message contains**:
+- "保存", "保存上下文", "save context", "checkpoint"
+- "/ckpt", "save", "保存一下", "帮我保存"
+- Any variation requesting to save/checkpoint
+
+**Skip if AI message contains**:
+- "执行spec-context-checkpoint"
+- "正在保存", "开始checkpoint"
+- "Creating manifest.json", "Saving context"
+- Any message about executing checkpoint process
+
+### Filtering Process
+
+```python
+# Pseudocode
+all_turns = get_current_session_turns()
+filtered_turns = []
+
+for turn in all_turns:
+    # Check user message
+    if contains_checkpoint_keywords(turn.user.message):
+        continue  # Skip this turn
+    
+    # Check AI message
+    if contains_checkpoint_keywords(turn.ai.message):
+        continue  # Skip this turn
+    
+    # Keep this turn
+    filtered_turns.append(turn)
+
+# Renumber turns sequentially
+for i, turn in enumerate(filtered_turns):
+    turn.number = i + 1
+```
+
+### Example
+
+**Original session** (15 turns):
+```
+Turn 1-12: Actual spec work (design discussions, code changes)
+Turn 13: User: "保存一下这个spec的上下文"
+Turn 14: AI: "好的,开始执行spec-context-checkpoint skill..."
+Turn 15: AI: "已创建manifest.json,保存完成"
+```
+
+**After filtering**:
+```
+Turns to save: 1-12 (actual work)
+Turns skipped: 13-15 (checkpoint meta-operations)
+Final turnsTotal: 12
+```
+
+**Metadata to save**:
+```json
+{
+  "turnsTotal": 12,
+  "turnsSaved": 12,
+  "turnsFiltered": 3,
+  "filtering": {
+    "originalTurnCount": 15,
+    "checkpointTurnsSkipped": 3,
+    "skippedTurns": [13, 14, 15],
+    "reason": "Checkpoint meta-operations"
+  }
+}
+```
+
+### Benefits
+
+1. **Cleaner context**: Only spec-related work saved
+2. **Better Resume**: No confusion about checkpoint operations
+3. **Accurate statistics**: Turn counts reflect actual work
+4. **Smaller file size**: No redundant meta-operation turns
+
+### Edge Cases
+
+**Case 1**: User mentions checkpoint in middle of discussion
+```
+Turn 5: User: "我们需要优化设计,顺便等会儿记得保存一下"
+```
+→ **DON'T skip** (checkpoint mentioned but main message is about design)
+→ Only skip turns where checkpoint is the PRIMARY intent
+
+**Case 2**: Multiple checkpoint attempts
+```
+Turn 13: User: "保存上下文"
+Turn 14: AI: "执行checkpoint..." (fails)
+Turn 15: User: "再试一次保存"
+Turn 16: AI: "重新执行checkpoint..." (succeeds)
+```
+→ Skip turns 13-16 (all checkpoint-related)
+
+**Case 3**: Checkpoint at start of session
+```
+Turn 1: User: "先保存一下上次的工作"
+Turn 2: AI: "执行checkpoint..."
+Turn 3-15: Actual spec work
+```
+→ Skip turns 1-2, save turns 3-15 (renumbered to 1-13)
+
+## Usage in Checkpoint Skill
+
+When creating `recent-turns.json`:
+
+```python
+# Pseudocode
+for turn in current_session:
+    turn_data = {
+        "turn": turn.number,
+        "timestamp": turn.timestamp,
+        "user": {
+            "message": turn.user_message,  # COMPLETE text
+            "messageLength": len(turn.user_message)
+        },
+        "ai": {
+            "message": turn.ai_response,  # COMPLETE text (all explanations + code)
+            "messageLength": len(turn.ai_response),
+            "keyPoints": extract_key_points(turn.ai_response),
+            "codeSnippets": extract_code_snippets(turn.ai_response),
+            "fileChanges": extract_file_changes(turn.tool_calls)  # DETAILED!
+        },
+        "outcome": analyze_outcome(turn)
+    }
+    save_turn(turn_data)
+```
+
+**Key principle**: When in doubt, save MORE rather than LESS.

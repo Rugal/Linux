@@ -1,0 +1,19 @@
+{
+  "name": "specification-driven-development",
+  "version": "1.0.0",
+  "description": "Spec-driven development workflow for systematic feature implementation with validation at each stage. Includes requirements, design, tasks creation and execution phases with built-in validation agents.",
+  "author": {
+    "name": "Rugal Bernstein"
+  },
+  "license": "MIT",
+  "keywords": [
+    "spec-driven",
+    "workflow",
+    "requirements",
+    "design",
+    "tasks",
+    "validation",
+    "systematic-development",
+    "feature-implementation"
+  ]
+}
